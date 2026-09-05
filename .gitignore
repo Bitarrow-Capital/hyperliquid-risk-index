@@ -1,5 +1,5 @@
 __pycache__/
 *.pyc
-universo.json
+# universo.json se publica: es la cohorte, parte del registro
 # mercado.json se publica: es parte de la transparencia del metodo
 *.log

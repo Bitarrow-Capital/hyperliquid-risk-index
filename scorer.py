@@ -68,6 +68,7 @@ class Calificacion:
     dist_liquidacion: float
     n_posiciones: int
     n_aisladas: int
+    monedas_sin_medir: int
     apuestas_efectivas: float   # posiciones independientes de verdad
     concentracion: float
     kelly_ratio: float          # referencia, depende de MU_SUPUESTO
@@ -85,11 +86,16 @@ class Calificacion:
 # un grado D no dice "malo", dice "el 57% de las carteras asi fueron liquidadas
 # en una ventana de 90 dias".
 TASA_HISTORICA = (
-    (0,   0.000), (10,  0.022), (20,  0.034), (30,  0.083), (40,  0.439),
-    (50,  0.568), (60,  0.535), (70,  0.570), (80,  0.625), (90,  0.774),
+    (0,   0.000), (10,  0.023), (20,  0.034), (30,  0.083), (40,  0.433),
+    (50,  0.579), (60,  0.508), (70,  0.466), (80,  0.625), (90,  0.745),
 )
+CALIBRADA_EL = "2026-09-05"   # rehacer cuando cambie el regimen de volatilidad
 AUDITORIA = {"ventanas": 13, "dias_ventana": 90, "independientes": 3,
-             "corte_fuera_de_muestra": "2025-11-30", "alcistas": 3, "bajistas": 10}
+             "corte_fuera_de_muestra": "2025-11-30", "alcistas": 3, "bajistas": 10,
+             "calibrada_el": "2026-09-05",
+             "supuestos": {"mu": 0.55, "vol_desconocida": 1.20,
+                           "corr_desconocida": 0.70, "materialidad": 0.05,
+                           "patrimonio_min": 100}}
 
 
 def tasa_historica(puntos):
@@ -119,6 +125,49 @@ def _grado(p):
     independientes. Estos cortes se van a mover cuando haya mas historia."""
     return "A" if p < 20 else "B" if p < 40 else "C" if p < 50 else "D" if p < 90 else "F"
 
+
+
+def puntuar(vol_cuenta, dist_liq, exposicion, efectivas, bruto, n_pos):
+    """LA funcion de puntaje. Pura: no toca la red, no lee archivos.
+
+    Existe separada para que la auditoria historica la IMPORTE en vez de
+    reimplementarla. Cuando la auditoria tenia su propia copia, la copia no
+    incluia el componente de Kelly y la calibracion quedo medida sobre una
+    formula distinta a la de produccion — el mismo error que tenia el motor v1
+    de trading, donde backtest y ejecucion divergieron. No se repite: hay una
+    sola formula y las dos la llaman.
+
+    NO usa mu. Kelly se reporta como campo aparte, no suma puntos: la
+    calificacion no puede depender del parametro menos estimable que existe.
+    """
+    pts, banderas = 0, []
+
+    # 1. volatilidad de la cuenta — el nucleo
+    if vol_cuenta > 2.00:
+        pts += 45; banderas.append(f"volatilidad de cuenta {vol_cuenta*100:.0f}% anual — extrema")
+    elif vol_cuenta > 1.20:
+        pts += 35; banderas.append(f"volatilidad de cuenta {vol_cuenta*100:.0f}% anual — muy alta")
+    elif vol_cuenta > 0.70:
+        pts += 22; banderas.append(f"volatilidad de cuenta {vol_cuenta*100:.0f}% anual — alta")
+    elif vol_cuenta > 0.45:
+        pts += 10; banderas.append(f"volatilidad de cuenta {vol_cuenta*100:.0f}% anual")
+
+    # 2. distancia a liquidacion — hecho, no estimacion
+    if bruto > 0:
+        if dist_liq < 0.10:
+            pts += 40; banderas.append(f"liquidacion a {dist_liq*100:.0f}% — critico")
+        elif dist_liq < 0.20:
+            pts += 28; banderas.append(f"liquidacion a {dist_liq*100:.0f}%")
+        elif dist_liq < 0.35:
+            pts += 15; banderas.append(f"liquidacion a {dist_liq*100:.0f}%")
+
+    # 3. diversificacion EFECTIVA, no numero de posiciones
+    if bruto > 0 and exposicion > 2 and efectivas < 1.3:
+        pts += 8
+        banderas.append(f"{n_pos} posiciones pero solo {efectivas:.1f} apuestas "
+                        f"independientes — correlacionadas")
+
+    return min(pts, 100), banderas
 
 def calificar(wallet: str, m=None) -> Calificacion | None:
     m = m or mercado.cargar()
@@ -161,7 +210,11 @@ def calificar(wallet: str, m=None) -> Calificacion | None:
             mk = pv / abs(szi)
             dmin = min(dmin, abs(mk - lq) / mk)
 
-    vol_usd, vol_unit, efectivas = mercado.riesgo_portafolio(m, firmadas)
+    vol_usd, vol_unit, efectivas, psd = mercado.riesgo_portafolio(m, firmadas)
+    # monedas sin historia suficiente para medir su volatilidad: usan un default
+    # de 120%. No se calla — se cuenta y se marca, porque esa parte de la
+    # calificacion es un supuesto, no una medicion.
+    sin_medir = sum(1 for c, _ in firmadas if c not in m["vol"])
     vol_cuenta = vol_usd / patr if patr > 0 else 0.0
     exp = bruto / patr if patr > 0 else 0.0
     conc = mayor / bruto if bruto > 0 else 0.0
@@ -170,47 +223,22 @@ def calificar(wallet: str, m=None) -> Calificacion | None:
     l_ruina = (2 * MU_SUPUESTO / vol_unit ** 2) if vol_unit > 0 else 0.0
     kelly_ratio = (exp / l_ruina) if l_ruina > 0 else 0.0
 
-    pts, banderas = 0, []
-
-    # 1. volatilidad de la cuenta — el nucleo, sin mu
-    if vol_cuenta > 2.00:
-        pts += 45; banderas.append(f"volatilidad de cuenta {vol_cuenta*100:.0f}% anual — extrema")
-    elif vol_cuenta > 1.20:
-        pts += 35; banderas.append(f"volatilidad de cuenta {vol_cuenta*100:.0f}% anual — muy alta")
-    elif vol_cuenta > 0.70:
-        pts += 22; banderas.append(f"volatilidad de cuenta {vol_cuenta*100:.0f}% anual — alta")
-    elif vol_cuenta > 0.45:
-        pts += 10; banderas.append(f"volatilidad de cuenta {vol_cuenta*100:.0f}% anual")
-
-    # 2. distancia a liquidacion — hecho
-    if bruto > 0:
-        if dmin < 0.10:
-            pts += 40; banderas.append(f"liquidacion a {dmin*100:.0f}% — critico")
-        elif dmin < 0.20:
-            pts += 28; banderas.append(f"liquidacion a {dmin*100:.0f}%")
-        elif dmin < 0.35:
-            pts += 15; banderas.append(f"liquidacion a {dmin*100:.0f}%")
-
-    # 3. diversificacion EFECTIVA, no numero de posiciones
-    if bruto > 0 and exp > 2 and efectivas < 1.3:
-        pts += 8
-        banderas.append(f"{len(firmadas)} posiciones pero solo {efectivas:.1f} apuestas "
-                        f"independientes — correlacionadas")
-
-    # 4. Kelly, referencia con supuesto explicito, peso bajo
-    if kelly_ratio > 2.0:
-        pts += 7
-        banderas.append(f"{kelly_ratio:.1f}x el punto de ruina de Kelly "
-                        f"(supuesto mu={MU_SUPUESTO*100:.0f}%)")
-
-    pts = min(pts, 100)
+    pts, banderas = puntuar(vol_cuenta, dmin, exp, efectivas, bruto, len(firmadas))
+    if sin_medir:
+        banderas.append(f"{sin_medir} moneda(s) sin historia suficiente — "
+                        f"volatilidad supuesta en {mercado.VOL_DESCONOCIDA*100:.0f}%")
+    if not psd:
+        # la matriz de correlacion salio no semidefinida positiva: la vol del
+        # portafolio no es confiable. No se calla clavandola en cero.
+        banderas.append("VARIANZA NO CALCULABLE — correlaciones inconsistentes")
+        pts = max(pts, 50)
     return Calificacion(
         wallet=wallet,
         fecha=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         patrimonio=round(patr, 2), nocional=round(bruto, 2),
         exposicion=round(exp, 3), vol_cuenta=round(vol_cuenta, 4),
         dist_liquidacion=round(dmin, 4), n_posiciones=len(firmadas),
-        n_aisladas=n_aisladas,
+        n_aisladas=n_aisladas, monedas_sin_medir=sin_medir,
         apuestas_efectivas=round(efectivas, 2), concentracion=round(conc, 3),
         kelly_ratio=round(kelly_ratio, 2), mu_supuesto=MU_SUPUESTO,
         puntos=pts, grado=_grado(pts), tasa_historica=tasa_historica(pts),

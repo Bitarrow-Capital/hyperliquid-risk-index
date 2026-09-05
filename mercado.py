@@ -30,17 +30,19 @@ def _post(payload, reintentos=3):
             time.sleep(1.0 * (i + 1))
 
 
-def _top_monedas(n=40):
-    meta, ctx = _post({"type": "metaAndAssetCtxs"})
-    pares = [(meta["universe"][i]["name"], float(c.get("dayNtlVlm") or 0))
-             for i, c in enumerate(ctx)]
-    pares.sort(key=lambda x: -x[1])
-    return [m for m, _ in pares[:n]]
+def _todas_las_monedas():
+    """TODAS las perpetuas listadas, no las 40 de mas volumen.
+
+    Medir solo el top 40 dejaba al 47% de las carteras con al menos una moneda
+    sin volatilidad, usando un default inventado de 120%. Casi la mitad del
+    indice se calificaba con un numero que nadie midio."""
+    meta = _post({"type": "meta"})
+    return [a["name"] for a in meta["universe"]]
 
 
 def medir(monedas=None, dias=DIAS):
     """Devuelve {'vol': {moneda: vol_anual}, 'corr': {a: {b: rho}}}"""
-    monedas = monedas or _top_monedas()
+    monedas = monedas or _todas_las_monedas()
     fin = int(datetime.now(timezone.utc).timestamp() * 1000)
     ini = int((datetime.now(timezone.utc) - timedelta(days=dias)).timestamp() * 1000)
 
@@ -136,11 +138,12 @@ def riesgo_portafolio(m, posiciones):
     Las posiciones llevan signo: un largo en BTC contra un corto en ETH se
     cancela parcialmente, como debe ser. Sumar nocionales ignora eso."""
     if not posiciones:
-        return 0.0, 0.0, 0.0
+        return 0.0, 0.0, 0.0, True
     var = 0.0
     for a, va in posiciones:
         for b, vb in posiciones:
             var += va * vb * vol_de(m, a) * vol_de(m, b) * corr_de(m, a, b)
+    psd = var >= 0          # matriz consistente; si no, la vol no es confiable
     vol_usd = math.sqrt(max(var, 0.0))
 
     bruto = sum(abs(v) for _, v in posiciones)
@@ -152,7 +155,7 @@ def riesgo_portafolio(m, posiciones):
         for b, vb in posiciones:
             den += abs(va) * abs(vb) * corr_de(m, a, b)
     efectivas = (bruto ** 2 / den) if den > 0 else 0.0
-    return vol_usd, vol_unit, efectivas
+    return vol_usd, vol_unit, efectivas, psd
 
 
 if __name__ == "__main__":
