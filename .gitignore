@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+universo.json
+# mercado.json se publica: es parte de la transparencia del metodo
+*.log

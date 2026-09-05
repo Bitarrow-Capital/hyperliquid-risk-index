@@ -1,0 +1,413 @@
+[
+  {
+    "wallet": "0x170519f69ef4bf7940eb8f9f16b1d60c50b92d79",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 9214.24,
+    "nocional": 79342.14,
+    "exposicion": 8.611,
+    "dist_liquidacion": 1.0,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 6.62,
+    "puntos": 40,
+    "grado": "C",
+    "banderas": [
+      "exposicion 8.6x \u2014 muy alta",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0x1e3001537d0c6799e59245597c541127bac57120",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 14800.13,
+    "nocional": 39998.31,
+    "exposicion": 2.703,
+    "dist_liquidacion": 0.3431,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 2.08,
+    "puntos": 32,
+    "grado": "B",
+    "banderas": [
+      "exposicion 2.7x sobre el punto de ruina de Kelly (1.30x)",
+      "liquidacion a 34%",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0x1ec15e24896f4feb55dd70d22dc3620ae3cc990c",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 10604.29,
+    "nocional": 263523.88,
+    "exposicion": 24.851,
+    "dist_liquidacion": 0.0258,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 19.12,
+    "puntos": 90,
+    "grado": "F",
+    "banderas": [
+      "exposicion 24.9x \u2014 extrema",
+      "liquidacion a 3% \u2014 critico",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0x25773676902085225ae5751075e4161369334897",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 1395245.07,
+    "nocional": 6406247.3,
+    "exposicion": 4.591,
+    "dist_liquidacion": 0.4743,
+    "n_posiciones": 28,
+    "concentracion": 0.405,
+    "kelly_ratio": 3.53,
+    "puntos": 22,
+    "grado": "B",
+    "banderas": [
+      "exposicion 4.6x \u2014 alta"
+    ]
+  },
+  {
+    "wallet": "0x2ca4927174ba283d8a57f60ef3589844035a2930",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 706699.11,
+    "nocional": 3208551.92,
+    "exposicion": 4.54,
+    "dist_liquidacion": 0.2203,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 3.49,
+    "puntos": 42,
+    "grado": "C",
+    "banderas": [
+      "exposicion 4.5x \u2014 alta",
+      "liquidacion a 22%",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0x654086857e1fad6dcf05cf6695cce51ea3984268",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 43809.4,
+    "nocional": 58392.01,
+    "exposicion": 1.333,
+    "dist_liquidacion": 0.7747,
+    "n_posiciones": 3,
+    "concentracion": 0.926,
+    "kelly_ratio": 1.03,
+    "puntos": 20,
+    "grado": "B",
+    "banderas": [
+      "exposicion 1.3x sobre el punto de ruina de Kelly (1.30x)",
+      "concentracion 93% en una posicion"
+    ]
+  },
+  {
+    "wallet": "0x7717a7a245d9f950e586822b8c9b46863ed7bd7e",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 6262765.13,
+    "nocional": 14038951.27,
+    "exposicion": 2.242,
+    "dist_liquidacion": 1.0,
+    "n_posiciones": 171,
+    "concentracion": 0.044,
+    "kelly_ratio": 1.72,
+    "puntos": 12,
+    "grado": "A",
+    "banderas": [
+      "exposicion 2.2x sobre el punto de ruina de Kelly (1.30x)"
+    ]
+  },
+  {
+    "wallet": "0x78dce96236804d6958bf3c4598cf5efbc371629c",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 58060.04,
+    "nocional": 887709.08,
+    "exposicion": 15.29,
+    "dist_liquidacion": 0.054,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 11.76,
+    "puntos": 90,
+    "grado": "F",
+    "banderas": [
+      "exposicion 15.3x \u2014 extrema",
+      "liquidacion a 5% \u2014 critico",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0x82914a781d3add7f8f4f198666f14618415ac613",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 37839.91,
+    "nocional": 105346.36,
+    "exposicion": 2.784,
+    "dist_liquidacion": 0.4221,
+    "n_posiciones": 4,
+    "concentracion": 0.719,
+    "kelly_ratio": 2.14,
+    "puntos": 12,
+    "grado": "A",
+    "banderas": [
+      "exposicion 2.8x sobre el punto de ruina de Kelly (1.30x)"
+    ]
+  },
+  {
+    "wallet": "0x937cb67e028b46bfe6fd7b7502c96ba7fb0d5899",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 67158.29,
+    "nocional": 672339.14,
+    "exposicion": 10.011,
+    "dist_liquidacion": 0.1196,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 7.7,
+    "puntos": 78,
+    "grado": "D",
+    "banderas": [
+      "exposicion 10.0x \u2014 extrema",
+      "liquidacion a 12%",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0xa1d22621c9b077ce4ac468908114a82b2de4a8db",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 19403.35,
+    "nocional": 254529.22,
+    "exposicion": 13.118,
+    "dist_liquidacion": 0.0649,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 10.09,
+    "puntos": 90,
+    "grado": "F",
+    "banderas": [
+      "exposicion 13.1x \u2014 extrema",
+      "liquidacion a 6% \u2014 critico",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0xa62b923a112d50d03e1e096bbd53422490dac104",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 70007.93,
+    "nocional": 71548.03,
+    "exposicion": 1.022,
+    "dist_liquidacion": 1.0,
+    "n_posiciones": 2,
+    "concentracion": 0.509,
+    "kelly_ratio": 0.79,
+    "puntos": 0,
+    "grado": "A",
+    "banderas": []
+  },
+  {
+    "wallet": "0xa70ac79d24b8ea7dc8899d6c2df26488130b4be9",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 989897.5,
+    "nocional": 3145616.0,
+    "exposicion": 3.178,
+    "dist_liquidacion": 0.5812,
+    "n_posiciones": 16,
+    "concentracion": 0.527,
+    "kelly_ratio": 2.44,
+    "puntos": 22,
+    "grado": "B",
+    "banderas": [
+      "exposicion 3.2x \u2014 alta"
+    ]
+  },
+  {
+    "wallet": "0xa775d1bd91ee2cc4cae6113e5fd9c0c17b355277",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 20575.24,
+    "nocional": 40262.15,
+    "exposicion": 1.957,
+    "dist_liquidacion": 0.4754,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 1.51,
+    "puntos": 12,
+    "grado": "A",
+    "banderas": [
+      "exposicion 2.0x sobre el punto de ruina de Kelly (1.30x)"
+    ]
+  },
+  {
+    "wallet": "0xbb160cb61e694570f9d570f9fcde7c61dd2143ad",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 7703.62,
+    "nocional": 6987.16,
+    "exposicion": 0.907,
+    "dist_liquidacion": 1.0,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 0.7,
+    "puntos": 0,
+    "grado": "A",
+    "banderas": []
+  },
+  {
+    "wallet": "0xbdb525a0755b92f2a546e5caf62ff60a8e770163",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 150204.0,
+    "nocional": 85339.7,
+    "exposicion": 0.568,
+    "dist_liquidacion": 1.0,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 0.44,
+    "puntos": 0,
+    "grado": "A",
+    "banderas": []
+  },
+  {
+    "wallet": "0xc4273c1819d5cf6af10d04377602c30eae6791ff",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 307063.75,
+    "nocional": 1687732.37,
+    "exposicion": 5.496,
+    "dist_liquidacion": 0.1775,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 4.23,
+    "puntos": 68,
+    "grado": "D",
+    "banderas": [
+      "exposicion 5.5x \u2014 muy alta",
+      "liquidacion a 18%",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0xc6e17525c730e379758ebd423c84ab794cc1b56a",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 195739.79,
+    "nocional": 504230.43,
+    "exposicion": 2.576,
+    "dist_liquidacion": 0.7299,
+    "n_posiciones": 4,
+    "concentracion": 0.488,
+    "kelly_ratio": 1.98,
+    "puntos": 12,
+    "grado": "A",
+    "banderas": [
+      "exposicion 2.6x sobre el punto de ruina de Kelly (1.30x)"
+    ]
+  },
+  {
+    "wallet": "0xd4c1f7e8d876c4749228d515473d36f919583d1d",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 5621405.82,
+    "nocional": 40075966.66,
+    "exposicion": 7.129,
+    "dist_liquidacion": 0.1851,
+    "n_posiciones": 17,
+    "concentracion": 0.513,
+    "kelly_ratio": 5.48,
+    "puntos": 63,
+    "grado": "D",
+    "banderas": [
+      "exposicion 7.1x \u2014 muy alta",
+      "liquidacion a 19%"
+    ]
+  },
+  {
+    "wallet": "0xd57d154c8611f85607b1c54b004d7be4f82d7c57",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 788.49,
+    "nocional": 7993.67,
+    "exposicion": 10.138,
+    "dist_liquidacion": 0.2202,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 7.8,
+    "puntos": 65,
+    "grado": "D",
+    "banderas": [
+      "exposicion 10.1x \u2014 extrema",
+      "liquidacion a 22%",
+      "una sola posicion, sin diversificacion"
+    ]
+  },
+  {
+    "wallet": "0xd6608f4027ee90db6dc45d0b4b8e2fb0a49c1f61",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 974562.86,
+    "nocional": 19991.67,
+    "exposicion": 0.021,
+    "dist_liquidacion": 1.0,
+    "n_posiciones": 2,
+    "concentracion": 0.5,
+    "kelly_ratio": 0.02,
+    "puntos": 0,
+    "grado": "A",
+    "banderas": []
+  },
+  {
+    "wallet": "0xeb473272fe8aff61d97fb974422966391f3c25be",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 4247.54,
+    "nocional": 7429.88,
+    "exposicion": 1.749,
+    "dist_liquidacion": 0.7488,
+    "n_posiciones": 2,
+    "concentracion": 0.735,
+    "kelly_ratio": 1.35,
+    "puntos": 12,
+    "grado": "A",
+    "banderas": [
+      "exposicion 1.7x sobre el punto de ruina de Kelly (1.30x)"
+    ]
+  },
+  {
+    "wallet": "0xecb63caa47c7c4e77f60f1ce858cf28dc2b82b00",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 36978929.75,
+    "nocional": 118592984.39,
+    "exposicion": 3.207,
+    "dist_liquidacion": 0.6848,
+    "n_posiciones": 84,
+    "concentracion": 0.36,
+    "kelly_ratio": 2.47,
+    "puntos": 22,
+    "grado": "B",
+    "banderas": [
+      "exposicion 3.2x \u2014 alta"
+    ]
+  },
+  {
+    "wallet": "0xf5d81a135f756ca16544e53c20fc20643ec3ad53",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 1142428.24,
+    "nocional": 1335292.86,
+    "exposicion": 1.169,
+    "dist_liquidacion": 1.0,
+    "n_posiciones": 21,
+    "concentracion": 0.543,
+    "kelly_ratio": 0.9,
+    "puntos": 0,
+    "grado": "A",
+    "banderas": []
+  },
+  {
+    "wallet": "0xfeee942a06d2f8012823ccde7bf7bcbcaa29a09f",
+    "fecha": "2026-09-02 12:00 UTC",
+    "patrimonio": 30806.43,
+    "nocional": 849371.67,
+    "exposicion": 27.571,
+    "dist_liquidacion": 0.0224,
+    "n_posiciones": 1,
+    "concentracion": 1.0,
+    "kelly_ratio": 21.21,
+    "puntos": 90,
+    "grado": "F",
+    "banderas": [
+      "exposicion 27.6x \u2014 extrema",
+      "liquidacion a 2% \u2014 critico",
+      "una sola posicion, sin diversificacion"
+    ]
+  }
+]
