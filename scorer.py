@@ -74,11 +74,50 @@ class Calificacion:
     mu_supuesto: float
     puntos: int
     grado: str
+    tasa_historica: float
     banderas: list = field(default_factory=list)
 
 
+
+# Tasa de liquidacion MEDIDA por tramo de puntos, de la simulacion historica
+# fuera de muestra: 13 ventanas de 90 dias, volatilidades estimadas solo con
+# datos anteriores a 2025-11-30. Es lo que convierte una letra en informacion:
+# un grado D no dice "malo", dice "el 57% de las carteras asi fueron liquidadas
+# en una ventana de 90 dias".
+TASA_HISTORICA = (
+    (0,   0.000), (10,  0.022), (20,  0.034), (30,  0.083), (40,  0.439),
+    (50,  0.568), (60,  0.535), (70,  0.570), (80,  0.625), (90,  0.774),
+)
+AUDITORIA = {"ventanas": 13, "dias_ventana": 90, "independientes": 3,
+             "corte_fuera_de_muestra": "2025-11-30", "alcistas": 3, "bajistas": 10}
+
+
+def tasa_historica(puntos):
+    """Fraccion de carteras con este nivel de puntaje que fueron liquidadas en
+    una ventana de 90 dias de precios reales. Solo 3 trayectorias de mercado
+    independientes: la cifra se va a mover con mas historia."""
+    r = 0.0
+    for corte, t in TASA_HISTORICA:
+        if puntos >= corte:
+            r = t
+    return r
+
 def _grado(p):
-    return "A" if p < 20 else "B" if p < 40 else "C" if p < 60 else "D" if p < 80 else "F"
+    """Cortes CALIBRADOS contra la simulacion historica fuera de muestra, no
+    escogidos a ojo. Los cortes originales (20/40/60/80) eran redondos y estaban
+    mal: entre 50 y 89 puntos la tasa de liquidacion es plana (56.8%, 53.5%,
+    57.0%, 62.5%) — o sea C, D y la parte baja de F eran el mismo riesgo.
+
+    Tasa de liquidacion medida por tramo, 13 ventanas de 90 dias:
+        0-19   ->  0.5%      A
+        20-39  ->  6.4%      B
+        40-49  -> 43.9%      C     <- el acantilado real esta en 40, no en 60
+        50-89  -> 57.0%      D
+        90-100 -> 77.4%      F     <- F empieza en 90, no en 80
+
+    OJO: 13 ventanas traslapadas sobre 280 dias son solo 3 trayectorias
+    independientes. Estos cortes se van a mover cuando haya mas historia."""
+    return "A" if p < 20 else "B" if p < 40 else "C" if p < 50 else "D" if p < 90 else "F"
 
 
 def calificar(wallet: str, m=None) -> Calificacion | None:
@@ -174,7 +213,8 @@ def calificar(wallet: str, m=None) -> Calificacion | None:
         n_aisladas=n_aisladas,
         apuestas_efectivas=round(efectivas, 2), concentracion=round(conc, 3),
         kelly_ratio=round(kelly_ratio, 2), mu_supuesto=MU_SUPUESTO,
-        puntos=pts, grado=_grado(pts), banderas=banderas)
+        puntos=pts, grado=_grado(pts), tasa_historica=tasa_historica(pts),
+        banderas=banderas)
 
 
 # ---------- universo ----------
@@ -286,7 +326,7 @@ if __name__ == "__main__":
     if res and not consulta:
         f = f"indice_{datetime.now().strftime('%Y%m%d')}.json"
         json.dump({"fecha": datetime.now(timezone.utc).isoformat(),
-                   "mu_supuesto": MU_SUPUESTO,
+                   "mu_supuesto": MU_SUPUESTO, "auditoria": AUDITORIA,
                    "mercado": {"dias": m["dias"], "fecha": m["fecha"]},
                    "wallets": [asdict(x) for x in res]},
                   open(f, "w"), indent=2)
