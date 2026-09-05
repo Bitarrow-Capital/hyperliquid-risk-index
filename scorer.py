@@ -86,16 +86,11 @@ class Calificacion:
 # un grado D no dice "malo", dice "el 57% de las carteras asi fueron liquidadas
 # en una ventana de 90 dias".
 TASA_HISTORICA = (
-    (0,   0.000), (10,  0.023), (20,  0.034), (30,  0.083), (40,  0.433),
-    (50,  0.579), (60,  0.508), (70,  0.466), (80,  0.625), (90,  0.745),
+    (0,   0.000), (10,  0.022), (20,  0.034), (30,  0.083), (40,  0.433),
+    (50,  0.566), (60,  0.550), (70,  0.531), (80,  0.611), (90,  0.803),
 )
-CALIBRADA_EL = "2026-09-05"   # rehacer cuando cambie el regimen de volatilidad
 AUDITORIA = {"ventanas": 13, "dias_ventana": 90, "independientes": 3,
-             "corte_fuera_de_muestra": "2025-11-30", "alcistas": 3, "bajistas": 10,
-             "calibrada_el": "2026-09-05",
-             "supuestos": {"mu": 0.55, "vol_desconocida": 1.20,
-                           "corr_desconocida": 0.70, "materialidad": 0.05,
-                           "patrimonio_min": 100}}
+             "corte_fuera_de_muestra": "2025-11-30", "alcistas": 3, "bajistas": 10}
 
 
 def tasa_historica(puntos):
