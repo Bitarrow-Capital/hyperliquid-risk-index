@@ -143,6 +143,54 @@ They are not interchangeable and their numbers will differ. Both are published.
 
 ---
 
+## Errors found and corrected
+
+Published here because a rating agency that quietly patches its own mistakes is
+worth nothing. Each was found by checking our output against Hyperliquid's own
+reported values rather than trusting the model.
+
+1. **A zeroed perp account was read as death.** Usually it is someone who closed
+   positions and moved to spot. One "destroyed" wallet held $2,205,079 in spot.
+2. **All `liquidation` fills were counted.** Hyperliquid also flags the side that
+   *absorbs* a liquidation, and that side profits — producing "liquidated grade-A
+   wallets" with positive PnL.
+3. **Spot was valued by array position.** `universe` (326) and `ctx` (718) do not
+   correspond positionally; they must be matched by pair name. This produced
+   portfolio values of $2,697,995,123.
+4. **The `send` ledger type was silently ignored**, erasing entire withdrawals.
+5. **Volatility was measured for the top 40 coins only**, while portfolios hold
+   177. Forty-seven percent of accounts were scored using an invented 120%
+   default for at least one position. All 193 listed perps are now measured.
+6. **Equity was read from the perpetual account alone.** Hyperliquid runs a
+   *unified* account: USDC held in spot **is** the collateral backing perpetual
+   positions. Reading `marginSummary.accountValue` understated equity — in one
+   case $527 against a real $1,478 — inflating leverage and shrinking the
+   apparent distance to liquidation across much of the index.
+7. **A materiality filter suppressed real danger.** Positions under 5% of equity
+   were skipped when computing account liquidation distance. But in **cross
+   margin every position threatens the whole account**: `liquidationPx` for a
+   coin is the price at which that coin's move liquidates the *entire* account.
+   The filter reported accounts as "100% safe" that Hyperliquid placed **1% from
+   liquidation**.
+
+Errors 6 and 7 were caught by auditing 14 randomly selected rated wallets against
+Hyperliquid's own `liquidationPx`: **7 of 14 deviated by more than 5 percentage
+points**, several by more than 90. After the fix, **0 of 14 deviate at all**.
+Grades moved substantially — `D→A`, `C→A`, `F→A` — because the old reading rated
+accounts as far more leveraged than they actually were.
+
+The index dated 2026-09-05 carries errors 6 and 7. It is **kept, not deleted**,
+and superseded by a corrected run.
+
+**Rules adopted from this:**
+- Distance to liquidation is taken from the exchange's own `liquidationPx`, never
+  from our model. Isolated positions are excluded because their loss is capped at
+  their own margin; **nothing else is filtered**.
+- Any ledger movement type not explicitly recognised marks a wallet `NO MEDIBLE`
+  and drops it from the sample. A smaller honest `n` beats a larger false one.
+
+---
+
 ## Assumptions, all of them
 
 | Constant | Value | Why |
