@@ -42,7 +42,6 @@ API = "https://api.hyperliquid.xyz/info"
 MU_SUPUESTO = 0.55        # deriva anual asumida para el marco de Kelly.
                           # ES UN SUPUESTO. Se publica para que se pueda discutir.
 PATRIMONIO_MIN = 100.0
-MATERIALIDAD = 0.05      # una posicion bajo 5% del patrimonio no fija el riesgo de la cuenta
 
 
 def post(payload, reintentos=3):
@@ -86,11 +85,16 @@ class Calificacion:
 # un grado D no dice "malo", dice "el 57% de las carteras asi fueron liquidadas
 # en una ventana de 90 dias".
 TASA_HISTORICA = (
-    (0,   0.000), (10,  0.022), (20,  0.034), (30,  0.083), (40,  0.433),
-    (50,  0.566), (60,  0.550), (70,  0.531), (80,  0.611), (90,  0.803),
+    (0,   0.000), (10,  0.022), (20,  0.032), (30,  0.084), (40,  0.445),
+    (50,  0.564), (60,  0.508), (70,  0.527), (80,  0.609), (90,  0.751),
 )
+CALIBRADA_EL = "2026-09-06"   # rehacer cuando cambie el regimen de volatilidad
 AUDITORIA = {"ventanas": 13, "dias_ventana": 90, "independientes": 3,
-             "corte_fuera_de_muestra": "2025-11-30", "alcistas": 3, "bajistas": 10}
+             "corte_fuera_de_muestra": "2025-11-30", "alcistas": 3, "bajistas": 10,
+             "calibrada_el": "2026-09-06",
+             "supuestos": {"mu": 0.55, "vol_desconocida": 1.20,
+                           "corr_desconocida": 0.70, "materialidad": 0.05,
+                           "patrimonio_min": 100}}
 
 
 def tasa_historica(puntos):
@@ -171,7 +175,21 @@ def calificar(wallet: str, m=None) -> Calificacion | None:
     pos = st.get("assetPositions", [])
     base = float(ms.get("accountValue", 0) or 0)
     flot = sum(float(a["position"].get("unrealizedPnl") or 0) for a in pos)
-    patr = base + flot
+
+    # CUENTA UNIFICADA: en Hyperliquid el USDC de spot ES el colateral del perp.
+    # Leer solo marginSummary.accountValue subestima el patrimonio, infla la
+    # exposicion y hace que el indice califique peor a todo el mundo. Verificado
+    # contra el liquidationPx que reporta HL: el patrimonio que HL usa para
+    # calcularlo es el saldo USDC de spot, no accountValue.
+    colateral = 0.0
+    try:
+        for b in post({"type": "spotClearinghouseState",
+                       "user": wallet}).get("balances", []):
+            if b.get("coin") == "USDC":
+                colateral += float(b.get("total") or 0)
+    except Exception:
+        pass
+    patr = max(colateral, base + flot)
     if patr <= 0:
         return None
 
@@ -194,11 +212,15 @@ def calificar(wallet: str, m=None) -> Calificacion | None:
         # posicion AISLADA de $21 cuya perdida maxima era $27.
         #   1. aislada  -> la perdida esta acotada al margen de esa posicion
         #   2. inmaterial -> menos de MATERIALIDAD del patrimonio, no mueve la aguja
+        # Solo se excluyen las AISLADAS: su perdida esta acotada a su propio
+        # margen. NO se filtra por tamaño: en cross margin el liquidationPx de
+        # cualquier posicion es el precio al que se liquida LA CUENTA ENTERA por
+        # el movimiento de esa moneda. Filtrar por materialidad hacia que el
+        # indice reportara "100% seguro" cuando HL decia 1% — verificado contra
+        # 14 wallets, 7 salian mal.
         aislada = str((p.get("leverage") or {}).get("type", "")).lower() == "isolated"
         if aislada:
             n_aisladas += 1
-            continue
-        if pv < MATERIALIDAD * patr:
             continue
         lq = float(p.get("liquidationPx") or 0)
         if lq > 0 and abs(szi) > 0:
@@ -284,21 +306,45 @@ def guardar_universo(u, ruta="universo.json"):
     json.dump(u, open(ruta, "w"), indent=1, sort_keys=True)
 
 
-def wallet_propia():
-    """La wallet de la casa SIEMPRE va en el indice, calificada con el mismo
+CLAVES_CASA = ("HYPERLIQUID_WALLET_ADDRESS", "HYPERLIQUID_WALLET_VITRINA")
+
+
+def wallets_propias():
+    """Las cuentas de la casa SIEMPRE van en el indice, calificadas con el mismo
     criterio que las demas. Publicar la propia mala nota es lo que ninguna
-    cuenta de trading hace, y es justo lo que hace creible al resto."""
-    d = os.getenv("HYPERLIQUID_WALLET_ADDRESS", "").strip().strip('"')
-    if d:
-        return d.lower()
-    for ruta in ("/root/bitarrow/.env", "../.env", ".env"):
-        try:
-            for ln in open(ruta):
-                if ln.startswith("HYPERLIQUID_WALLET_ADDRESS"):
-                    return ln.split("=", 1)[1].strip().strip('"').strip("'").lower()
-        except Exception:
-            pass
-    return None
+    cuenta de trading hace, y es justo lo que hace creible al resto.
+
+    Son dos y corren estrategias distintas a proposito:
+      HYPERLIQUID_WALLET_ADDRESS -> capital propio, preset agresivo
+      HYPERLIQUID_WALLET_VITRINA -> "Bitarrow Core", preset conservador,
+                                    el historial que va a sostener la boveda
+    """
+    out = {}
+    for clave in CLAVES_CASA:
+        d = os.getenv(clave, "").strip().strip('"')
+        if not d:
+            for ruta in ("/root/bitarrow/.env", "../.env", ".env"):
+                try:
+                    for ln in open(ruta):
+                        if ln.startswith(clave):
+                            d = ln.split("=", 1)[1].strip().strip('"').strip("'")
+                            break
+                except Exception:
+                    pass
+                if d:
+                    break
+        if d:
+            out[d.lower()] = clave
+    return out
+
+
+def wallet_propia():
+    """Compatibilidad: la principal."""
+    w = wallets_propias()
+    for d, c in w.items():
+        if c == "HYPERLIQUID_WALLET_ADDRESS":
+            return d
+    return next(iter(w), None)
 
 
 if __name__ == "__main__":
@@ -310,7 +356,7 @@ if __name__ == "__main__":
           f"(cache {m['fecha']})")
 
     hoy = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    propia = wallet_propia()
+    propias = wallets_propias()
 
     consulta = len(sys.argv) > 1     # consulta puntual: NO toca el indice del dia
     if consulta:
@@ -320,8 +366,8 @@ if __name__ == "__main__":
         antes = len(u)
         for w in cosechar():
             u.setdefault(w, {"primera_vez": hoy})
-        if propia:
-            u.setdefault(propia, {"primera_vez": hoy, "casa": True})
+        for d in propias:
+            u.setdefault(d, {"primera_vez": hoy, "casa": True})
         guardar_universo(u)
         print(f"  universo: {antes} -> {len(u)} (+{len(u)-antes} nuevas)")
         objetivo = sorted(u, key=lambda w: u[w]["primera_vez"])
@@ -338,7 +384,7 @@ if __name__ == "__main__":
                 vacias += 1
                 continue
             res.append(c)
-            marca = " <-CASA" if propia and w == propia else ""
+            marca = (" <-CASA:" + propias[w].split("_")[-1]) if w in propias else ""
             b = (c.banderas[0][:40] if c.banderas else "") + marca
             print(f"  {w[:12]:<14}{c.grado:>3}{c.puntos:>5}{c.patrimonio:>14,.0f}"
                   f"{c.vol_cuenta*100:>8.0f}%{c.exposicion:>6.1f}x"
