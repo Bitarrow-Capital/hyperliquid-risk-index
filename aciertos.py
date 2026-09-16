@@ -37,7 +37,9 @@ UMBRAL_FLUJO = 0.50            # flujos > 50% -> el rendimiento no es medible
 FLUJOS = {'deposit': +1, 'withdraw': -1,
           'vaultwithdraw': +1, 'vaultdeposit': -1, 'vaultcreate': -1,
           'accountclasstransfer': 0, 'internaltransfer': 0,
-          'cstakingtransfer': 0, 'spotgenesis': 0, 'rewardsclaim': +1}
+          'cstakingtransfer': 0, 'spotgenesis': 0, 'rewardsclaim': +1,
+          # PnL, no movimiento de capital: no alteran el rendimiento
+          'liquidation': 0, 'vaultleadercommission': 0}
 DIRIGIDOS = ('send', 'spottransfer', 'subaccounttransfer')
 
 
@@ -78,11 +80,27 @@ def precio(token):
 
 
 def perp(wallet):
+    """Patrimonio con la MISMA definicion que usa el indice.
+
+    El indice paso a leer la cuenta unificada (el USDC de spot ES el colateral
+    del perp). Si aqui se lee solo marginSummary.accountValue se compara un V0
+    unificado contra un V1 parcial, y los rendimientos salen disparatados: la
+    corrida del 2026-09-16 daba -69% de mediana para el grado A en diez dias,
+    con BTC cayendo apenas 6.7%. Las dos puntas tienen que medirse igual."""
     st = post({'type': 'clearinghouseState', 'user': wallet})
     ms = st.get('marginSummary', {})
-    return (float(ms.get('accountValue', 0) or 0)
-            + sum(float(a['position'].get('unrealizedPnl') or 0)
-                  for a in st.get('assetPositions', [])))
+    base = float(ms.get('accountValue', 0) or 0)
+    flot = sum(float(a['position'].get('unrealizedPnl') or 0)
+               for a in st.get('assetPositions', []))
+    col = 0.0
+    try:
+        for b in post({'type': 'spotClearinghouseState',
+                       'user': wallet}).get('balances', []):
+            if b.get('coin') == 'USDC':
+                col += float(b.get('total') or 0)
+    except Exception:
+        pass
+    return max(col, base + flot)
 
 
 def fondos_fuera(wallet):
@@ -150,9 +168,17 @@ def main():
         print(f"  hay {len(archivos)} indice(s). Necesitas al menos 2 fechas.")
         sys.exit(0)
 
-    _d = json.load(open(archivos[0]))
+    # Por defecto compara el indice MAS VIEJO, que es tambien el mas chico: el
+    # universo arranco en 24 wallets. Se puede pasar otro por argumento:
+    #     python3 aciertos.py indice_20260906.json
+    # Conviene el primero producido con el metodo YA corregido y con muestra
+    # grande. Comparar contra uno hecho con otra formula mezcla metodos.
+    elegido = sys.argv[1] if len(sys.argv) > 1 else archivos[0]
+    if elegido not in archivos:
+        sys.exit(f"  no existe {elegido}")
+    _d = json.load(open(elegido))
     viejo = _d["wallets"] if isinstance(_d, dict) else _d   # v2 trae metadatos
-    fecha = archivos[0][7:15]
+    fecha = elegido[7:15]
     desde = datetime(int(fecha[:4]), int(fecha[4:6]), int(fecha[6:8]), tzinfo=timezone.utc)
     ahora = datetime.now(timezone.utc)
     desde_ms, ahora_ms = int(desde.timestamp()*1000), int(ahora.timestamp()*1000)
