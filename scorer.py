@@ -44,6 +44,28 @@ MU_SUPUESTO = 0.55        # deriva anual asumida para el marco de Kelly.
 PATRIMONIO_MIN = 100.0
 
 
+# ---- METODOLOGIA ----------------------------------------------------------
+# 2.0 -> 2.1 (2026-09-24). Cuatro errores de medicion, todos hacian ver mas
+# seguras cuentas que no lo eran. Ver README, errata 9-12.
+#   9.  patrimonio segun el MODO de cuenta (unificada / separada / portfolio
+#       margin). En cuentas separadas se sumaba el PnL flotante dos veces.
+#  10.  spot distinto de USDC (BTC, HYPE, ...) ignorado: es patrimonio Y
+#       exposicion. Las deudas del prestamo aparecen como saldo negativo.
+#  11.  aisladas que usan >=30% del patrimonio como margen se ignoraban en la
+#       distancia a liquidacion. Pueden destruir >30% de la cuenta: justo lo
+#       que la verificacion (aciertos.py) cuenta como destruccion.
+#  12.  cuando HL da liquidationPx null (portfolio margin, sobre todo) se
+#       tomaba como "100% seguro". Ahora se estima y se marca.
+# La funcion puntuar() NO cambia: se corrigen sus ENTRADAS. Por eso la
+# calibracion historica (TASA_HISTORICA) sigue valiendo.
+METODOLOGIA = "2.1"
+METODOLOGIA_DESDE = "2026-09-24"
+ESTABLES = {"USDC", "USDT0", "USDH", "USDE", "USDT", "FEUSD", "USDHL"}
+MATERIAL = 0.30          # fraccion del patrimonio que cuenta como destruccion
+COBERTURA = 0.50         # credito maximo a un libro cubierto al estimar liquidacion
+MODOS_UNIFICADOS = ("unifiedAccount", "portfolioMargin")
+MODOS_SEPARADOS = ("disabled", "default")
+
 def post(payload, reintentos=3):
     for i in range(reintentos):
         try:
@@ -55,6 +77,77 @@ def post(payload, reintentos=3):
                 raise
             time.sleep(0.6 * (i + 1))
 
+
+
+_PX_SPOT = {"t": 0.0, "px": {}}
+def precios_spot():
+    """Precio en USDC de cada token spot, por NOMBRE de par (mapear por posicion
+    cruza precios: error 6). Cache de 10 minutos."""
+    if time.time() - _PX_SPOT["t"] < 600 and _PX_SPOT["px"]:
+        return _PX_SPOT["px"]
+    mids = post({"type": "allMids"}); sm = post({"type": "spotMeta"})
+    tok = {t["index"]: t["name"] for t in sm["tokens"]}
+    px = {e: 1.0 for e in ESTABLES}
+    for u in sm["universe"]:
+        b, q = u["tokens"]
+        if q == 0 and u["name"] in mids:
+            px.setdefault(tok[b], float(mids[u["name"]]))
+    _PX_SPOT.update(t=time.time(), px=px)
+    return px
+
+
+def moneda_de(token, m):
+    """Token spot -> moneda perp con volatilidad medida (UBTC -> BTC). Si no hay
+    medicion, se queda con su nombre y cae en la volatilidad supuesta (120%)."""
+    if token in m["vol"]:
+        return token
+    if token.startswith("U") and token[1:] in m["vol"]:
+        return token[1:]
+    return token
+
+
+def patrimonio_cuenta(wallet, st=None, m=None):
+    """LA definicion de patrimonio. scorer.py y aciertos.py la IMPORTAN: si cada
+    uno tuviera la suya, la verificacion compararia manzanas con peras (paso:
+    error 8, -69% de mediana en grado A por leer distinto las dos puntas).
+
+    Devuelve dict: total, perp (lo que margina los perpetuos), spot (lista de
+    (moneda, valor) con precio de riesgo), modo, sin_precio, deuda."""
+    m = m or mercado.cargar()
+    st = st or post({"type": "clearinghouseState", "user": wallet})
+    av = float(st.get("marginSummary", {}).get("accountValue", 0) or 0)
+    try:
+        modo = post({"type": "userAbstraction", "user": wallet})
+    except Exception:
+        modo = "desconocido"
+    usdc = estables = deuda = 0.0; spot = []; sin_precio = 0
+    px = precios_spot()
+    for b in post({"type": "spotClearinghouseState", "user": wallet}).get("balances", []):
+        c, tot = b.get("coin"), float(b.get("total") or 0)
+        if tot == 0:
+            continue
+        if c == "USDC":
+            usdc += tot
+        elif c in ESTABLES:
+            estables += tot
+        elif c in px:
+            val = tot * px[c]
+            spot.append((moneda_de(c, m), val))
+        else:
+            sin_precio += 1            # tokens sin mercado contra USDC: no se valúan
+        if tot < 0:
+            deuda += -tot * px.get(c, 1.0)
+    if modo in MODOS_UNIFICADOS:
+        perp = usdc                    # el USDC de spot ES el colateral e incluye el PnL
+        total = usdc + estables + sum(v for _, v in spot)
+    elif modo in MODOS_SEPARADOS:
+        perp = av                      # accountValue YA incluye el PnL flotante
+        total = av + usdc + estables + sum(v for _, v in spot)
+    else:
+        perp = max(usdc, av)
+        total = perp + estables + sum(v for _, v in spot)
+    return dict(total=total, perp=perp, spot=spot, modo=modo,
+                sin_precio=sin_precio, deuda=deuda)
 
 @dataclass
 class Calificacion:
@@ -76,6 +169,11 @@ class Calificacion:
     grado: str
     tasa_historica: float
     banderas: list = field(default_factory=list)
+    modo_cuenta: str = ""
+    patrimonio_perp: float = 0.0
+    spot_valor: float = 0.0
+    liq_estimada: bool = False
+    metodologia: str = METODOLOGIA
 
 
 
@@ -171,31 +269,19 @@ def puntuar(vol_cuenta, dist_liq, exposicion, efectivas, bruto, n_pos):
 def calificar(wallet: str, m=None) -> Calificacion | None:
     m = m or mercado.cargar()
     st = post({"type": "clearinghouseState", "user": wallet})
-    ms = st.get("marginSummary", {})
     pos = st.get("assetPositions", [])
-    base = float(ms.get("accountValue", 0) or 0)
-    flot = sum(float(a["position"].get("unrealizedPnl") or 0) for a in pos)
 
-    # CUENTA UNIFICADA: en Hyperliquid el USDC de spot ES el colateral del perp.
-    # Leer solo marginSummary.accountValue subestima el patrimonio, infla la
-    # exposicion y hace que el indice califique peor a todo el mundo. Verificado
-    # contra el liquidationPx que reporta HL: el patrimonio que HL usa para
-    # calcularlo es el saldo USDC de spot, no accountValue.
-    colateral = 0.0
-    try:
-        for b in post({"type": "spotClearinghouseState",
-                       "user": wallet}).get("balances", []):
-            if b.get("coin") == "USDC":
-                colateral += float(b.get("total") or 0)
-    except Exception:
-        pass
-    patr = max(colateral, base + flot)
+    # PATRIMONIO segun el modo de cuenta (errores 9 y 10). Ver patrimonio_cuenta().
+    pc = patrimonio_cuenta(wallet, st, m)
+    patr, patr_perp = pc["total"], pc["perp"]
     if patr <= 0:
         return None
 
     # posiciones CON SIGNO: szi negativo = corto
     firmadas, bruto, mayor, dmin = [], 0.0, 0.0, 1.0
     n_aisladas = 0
+    nulas, mm_cruzado, bruto_cruzado, neto_cruzado = 0, 0.0, 0.0, 0.0
+    banderas_liq = []
     for a in pos:
         p = a["position"]
         szi = float(p["szi"])
@@ -205,27 +291,67 @@ def calificar(wallet: str, m=None) -> Calificacion | None:
         firmadas.append((p["coin"], pv if szi > 0 else -pv))
         bruto += pv
         mayor = max(mayor, pv)
-
-        # La distancia a liquidacion de la CUENTA solo la fijan posiciones que
-        # de verdad pueden tumbarla. Dos filtros, los dos aprendidos de un caso
-        # real: una cuenta de $42,647 salia con "liquidacion a 12%" por una
-        # posicion AISLADA de $21 cuya perdida maxima era $27.
-        #   1. aislada  -> la perdida esta acotada al margen de esa posicion
-        #   2. inmaterial -> menos de MATERIALIDAD del patrimonio, no mueve la aguja
-        # Solo se excluyen las AISLADAS: su perdida esta acotada a su propio
-        # margen. NO se filtra por tamaño: en cross margin el liquidationPx de
-        # cualquier posicion es el precio al que se liquida LA CUENTA ENTERA por
-        # el movimiento de esa moneda. Filtrar por materialidad hacia que el
-        # indice reportara "100% seguro" cuando HL decia 1% — verificado contra
-        # 14 wallets, 7 salian mal.
         aislada = str((p.get("leverage") or {}).get("type", "")).lower() == "isolated"
+        lq = float(p.get("liquidationPx") or 0)
+        mk = pv / abs(szi) if szi else 0.0
         if aislada:
             n_aisladas += 1
+            # ERROR 11: una aislada solo pierde su margen... pero si ese margen es
+            # >=30% del patrimonio, su liquidacion ES una destruccion (la misma
+            # definicion que usa aciertos.py). Esas cuentan; las chicas no (caso
+            # real: aislada de $21 que salia como "liquidacion a 12%" en $42,647).
+            margen = float(p.get("marginUsed") or 0)
+            if margen >= MATERIAL * patr and lq > 0 and mk > 0:
+                dmin = min(dmin, abs(mk - lq) / mk)
+                banderas_liq.append(f"aislada en {p['coin']} con {margen/patr:.0%} del patrimonio como margen")
             continue
-        lq = float(p.get("liquidationPx") or 0)
-        if lq > 0 and abs(szi) > 0:
-            mk = pv / abs(szi)
+        # cruzada: solo puede destruir la cuenta si el colateral del perp es
+        # material frente al patrimonio total (con mucho spot, no lo es)
+        if patr_perp < MATERIAL * patr:
+            continue
+        bruto_cruzado += pv
+        neto_cruzado += pv if szi > 0 else -pv
+        mm_cruzado += pv / (2 * float(p.get("maxLeverage") or 20))
+        if lq > 0 and mk > 0:
             dmin = min(dmin, abs(mk - lq) / mk)
+        else:
+            nulas += 1
+
+    # ERROR 12: HL no reporta liquidationPx (tipico de portfolio margin). Antes
+    # contaba como "100% seguro". Se estima el movimiento COMUN del mercado que
+    # agota el colateral (en un crash todo cae junto):
+    #     x = (colateral - margen de mantenimiento) / max(|neto|, COBERTURA * bruto)
+    # Un libro cubierto (largo BTC, corto ETH) tiene neto chico; pero las
+    # coberturas fallan (base, alts que se disparan solas), asi que nunca se le
+    # acredita mas de la mitad de su nocional bruto. Primera version usaba el
+    # bruto completo y mandaba a D a una cuenta cubierta de $18.7M.
+    liq_estimada = False
+    if nulas and bruto_cruzado > 0:
+        x = max(0.0, (patr_perp - mm_cruzado) / max(abs(neto_cruzado), COBERTURA * bruto_cruzado))
+        if x < dmin:
+            dmin = x
+        liq_estimada = True
+        banderas_liq.append(f"liquidacion ESTIMADA ({nulas} posicion(es) sin precio de liquidacion en HL)")
+    # prestamo con colateral (portfolio margin): el factor de salud dice cuanto
+    # puede caer el colateral antes de la liquidacion
+    if pc["deuda"] > 0 or pc["modo"] == "portfolioMargin":
+        try:
+            hf = post({"type": "borrowLendUserState", "user": wallet}).get("healthFactor")
+            if hf:
+                d_pm = max(0.0, 1 - 1 / float(hf))
+                if d_pm < dmin:
+                    dmin = d_pm
+                    banderas_liq.append(f"prestamo con salud {float(hf):.2f} — el colateral puede caer {d_pm:.0%}")
+        except Exception:
+            pass
+
+    # ERROR 10: el spot con riesgo de precio entra como posicion larga
+    for mon, val in pc["spot"]:
+        if abs(val) <= 0:
+            continue
+        firmadas.append((mon, val))
+        bruto += abs(val)
+        mayor = max(mayor, abs(val))
 
     vol_usd, vol_unit, efectivas, psd = mercado.riesgo_portafolio(m, firmadas)
     # monedas sin historia suficiente para medir su volatilidad: usan un default
@@ -241,6 +367,7 @@ def calificar(wallet: str, m=None) -> Calificacion | None:
     kelly_ratio = (exp / l_ruina) if l_ruina > 0 else 0.0
 
     pts, banderas = puntuar(vol_cuenta, dmin, exp, efectivas, bruto, len(firmadas))
+    banderas += banderas_liq
     if sin_medir:
         banderas.append(f"{sin_medir} moneda(s) sin historia suficiente — "
                         f"volatilidad supuesta en {mercado.VOL_DESCONOCIDA*100:.0f}%")
@@ -259,7 +386,8 @@ def calificar(wallet: str, m=None) -> Calificacion | None:
         apuestas_efectivas=round(efectivas, 2), concentracion=round(conc, 3),
         kelly_ratio=round(kelly_ratio, 2), mu_supuesto=MU_SUPUESTO,
         puntos=pts, grado=_grado(pts), tasa_historica=tasa_historica(pts),
-        banderas=banderas)
+        banderas=banderas, modo_cuenta=pc["modo"], patrimonio_perp=round(patr_perp, 2),
+        spot_valor=round(sum(v for _, v in pc["spot"]), 2), liq_estimada=liq_estimada)
 
 
 # ---------- universo ----------
@@ -395,6 +523,7 @@ if __name__ == "__main__":
     if res and not consulta:
         f = f"indice_{datetime.now().strftime('%Y%m%d')}.json"
         json.dump({"fecha": datetime.now(timezone.utc).isoformat(),
+                   "metodologia": METODOLOGIA, "metodologia_desde": METODOLOGIA_DESDE,
                    "mu_supuesto": MU_SUPUESTO, "auditoria": AUDITORIA,
                    "mercado": {"dias": m["dias"], "fecha": m["fecha"]},
                    "wallets": [asdict(x) for x in res]},

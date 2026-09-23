@@ -39,7 +39,10 @@ FLUJOS = {'deposit': +1, 'withdraw': -1,
           'accountclasstransfer': 0, 'internaltransfer': 0,
           'cstakingtransfer': 0, 'spotgenesis': 0, 'rewardsclaim': +1,
           # PnL, no movimiento de capital: no alteran el rendimiento
-          'liquidation': 0, 'vaultleadercommission': 0}
+          'liquidation': 0, 'vaultleadercommission': 0,
+          # prestar o pedir prestado no mueve el patrimonio: lo prestado sigue
+          # en el saldo (campo 'supplied') y la deuda aparece como saldo negativo
+          'borrowlend': 0}
 DIRIGIDOS = ('send', 'spottransfer', 'subaccounttransfer')
 
 
@@ -77,6 +80,16 @@ def precio(token):
         except Exception:
             pass
     return _px.get(token, 0.0)
+
+
+def patrimonio(wallet, metodologia):
+    """V1 con la MISMA definicion con la que se midio V0 en el indice.
+    2.1 en adelante: la funcion del scorer, importada (no copiada).
+    Indices anteriores: la definicion vieja, para no mezclar metodos."""
+    if metodologia and metodologia >= "2.1":
+        import scorer
+        return scorer.patrimonio_cuenta(wallet)["total"]
+    return perp(wallet)
 
 
 def perp(wallet):
@@ -178,6 +191,7 @@ def main():
         sys.exit(f"  no existe {elegido}")
     _d = json.load(open(elegido))
     viejo = _d["wallets"] if isinstance(_d, dict) else _d   # v2 trae metadatos
+    metodologia = _d.get("metodologia", "2.0") if isinstance(_d, dict) else "2.0"
     fecha = elegido[7:15]
     desde = datetime(int(fecha[:4]), int(fecha[4:6]), int(fecha[6:8]), tzinfo=timezone.utc)
     ahora = datetime.now(timezone.utc)
@@ -185,7 +199,7 @@ def main():
     dias = (ahora - desde).days
 
     print(f"\n  BITARROW — verificacion de grados")
-    print(f"  indice del {fecha}  vs  {ahora:%Y-%m-%d}   ({dias} dias)\n")
+    print(f"  indice del {fecha}  vs  {ahora:%Y-%m-%d}   ({dias} dias)   metodologia {metodologia}\n")
     print(f"  {'wallet':<13}{'gr':>3}{'V0 perp':>13}{'V1 perp':>13}"
           f"{'perd. liq':>12}{'% de V0':>9}{'  estado'}")
     print("  " + "-" * 82)
@@ -196,7 +210,7 @@ def main():
             v0 = c['patrimonio']; g = c['grado']
             if v0 <= 0:
                 continue
-            v1 = perp(c['wallet']); time.sleep(0.12)
+            v1 = patrimonio(c['wallet'], metodologia); time.sleep(0.12)
             perd, neto, pond, raros = forense(c['wallet'], desde_ms, ahora_ms)
             time.sleep(0.12)
             raros_tot |= raros

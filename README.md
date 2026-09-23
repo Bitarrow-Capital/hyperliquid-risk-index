@@ -173,6 +173,45 @@ reported values rather than trusting the model.
    The filter reported accounts as "100% safe" that Hyperliquid placed **1% from
    liquidation**.
 
+8. **The verification read equity differently from the index.** After error 6
+   was fixed in the scorer, `aciertos.py` still read the perpetual account alone.
+   It compared a unified starting equity against a partial ending equity: grade-A
+   wallets showed a **−69% median return in ten days** while BTC fell 6.7%. The
+   destruction rate (which values nothing) was unaffected. Fixed on 2026-09-16;
+   the equity definition now lives in **one function that both files import**.
+9. **Equity ignored the account mode.** Hyperliquid has several: *unified* and
+   *portfolio margin* (spot USDC is the collateral), and *standard* (`disabled` /
+   `default`: spot and perp are separate). In a sample of 300 rated wallets the
+   mode is reported by the API and each formula was checked against Hyperliquid's
+   own `liquidationPx`: standard accounts match `accountValue` in 11 of 11. The old
+   code added unrealized PnL **on top of** `accountValue`, which already includes it.
+10. **Spot holdings other than USDC were ignored.** BTC, HYPE and other tokens are
+    equity *and* price risk. In a sample of 200, **16%** of rated wallets held such
+    spot worth over 10% of recorded equity; some held 8× to 236× it. They now count
+    as equity and as long positions in the volatility calculation. Loans appear as
+    negative balances, so debt is netted automatically.
+11. **Large isolated positions were ignored.** The rule "isolated positions cannot
+    sink the account" is true only while their margin is small. **334 of 4,283**
+    accounts had isolated positions using over 30% of equity as margin and were
+    reported "100% from liquidation" (71 graded B, 6 graded A). Losing over 30% of
+    equity in liquidations is exactly what the verification counts as destruction —
+    the scorer ignored what the validation measures. Isolated positions with margin
+    ≥ 30% of equity now set the distance.
+12. **A missing liquidation price was read as safety.** Hyperliquid returns
+    `liquidationPx: null` for some cross positions, mostly portfolio-margin accounts.
+    **286** accounts above 1.5× leverage were rated as if they could not be
+    liquidated (164 B, 65 A) — including one at loan health 1.13, about 12% from
+    liquidation. Now: loan health gives the distance when there is a loan
+    (`1 − 1/health`), and otherwise it is **estimated** from a common market move and
+    **flagged** in the rating.
+
+Errors 9–12 were measured by scoring the same 297 wallets at the same moment with
+both formulas: **84% keep their grade**, 29 get worse, 19 get better. Every change
+traces to one of the four causes above. They are fixed in **methodology 2.1**, in
+effect from the index of **2026-09-24**. Earlier indices were produced with 2.0 and
+are kept unchanged; each index file states its methodology, and the verification
+only compares an index against equity measured with the same definition.
+
 Errors 6 and 7 were caught by auditing 14 randomly selected rated wallets against
 Hyperliquid's own `liquidationPx`: **7 of 14 deviated by more than 5 percentage
 points**, several by more than 90. After the fix, **0 of 14 deviate at all**.
@@ -183,9 +222,10 @@ The index dated 2026-09-05 carries errors 6 and 7. It is **kept, not deleted**,
 and superseded by a corrected run.
 
 **Rules adopted from this:**
-- Distance to liquidation is taken from the exchange's own `liquidationPx`, never
-  from our model. Isolated positions are excluded because their loss is capped at
-  their own margin; **nothing else is filtered**.
+- Distance to liquidation is taken from the exchange's own `liquidationPx`. Isolated
+  positions are excluded **only when their margin is under 30% of equity**; nothing
+  else is filtered. When the exchange reports no liquidation price, the distance is
+  estimated and the rating says so — a missing number is never read as safety.
 - Any ledger movement type not explicitly recognised marks a wallet `NO MEDIBLE`
   and drops it from the sample. A smaller honest `n` beats a larger false one.
 
@@ -198,13 +238,17 @@ and superseded by a corrected run.
 | `MU_SUPUESTO` | 0.55 | round assumption for the Kelly *reference field only*; contributes no points |
 | `VOL_DESCONOCIDA` | 1.20 | coins without enough history are assumed very volatile — deliberately conservative. Wallets holding them are **flagged**, not silently defaulted |
 | `CORR_DESCONOCIDA` | 0.70 | unknown pairs assumed highly correlated — conservative |
-| `MATERIALIDAD` | 0.05 | positions under 5% of equity do not set account liquidation distance |
+| `MATERIAL` | 0.30 | share of equity whose loss counts as destruction: isolated positions with at least this much margin set the liquidation distance, and a perp side smaller than this cannot "destroy" an account that is mostly spot |
+| `COBERTURA` | 0.50 | when estimating a missing liquidation price, a hedged book (long one coin, short another) is credited with at most halving its gross exposure — hedges fail too |
 | `PATRIMONIO_MIN` | $100 | accounts below this are excluded from the index |
 
-Isolated-margin positions never set the account's liquidation distance: their loss
-is capped at their own margin. A `$42,647` account was once flagged at "12% from
-liquidation" because of an isolated `$21` position — fixing that moved 48 wallets
-out of grade F.
+Small isolated-margin positions do not set the account's liquidation distance: their
+loss is capped at their own margin. A `$42,647` account was once flagged at "12% from
+liquidation" because of an isolated `$21` position. But "small" matters — see error
+11: an isolated position holding most of the account's equity can destroy it.
+
+The earlier 5% materiality filter for cross positions was **removed** (error 7); an
+older version of this table still listed it.
 
 If the correlation matrix comes back non–positive-semidefinite, the portfolio
 volatility is not trustworthy; the wallet is flagged and floored, never silently
