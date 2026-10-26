@@ -62,6 +62,9 @@
  "0x004afa659f84a08fc6a4fd3ad3ad3ff49c13f25f": {
   "primera_vez": "2026-09-05"
  },
+ "0x0050f3427e5388e9cc458e977bc3444faf015618": {
+  "primera_vez": "2026-10-26"
+ },
  "0x005110f17139e63b2d624e4c040c861af4c12519": {
   "primera_vez": "2026-09-06"
  },
@@ -163,6 +166,9 @@
  },
  "0x00cc65e4e634403eec82a3548984ceb9ae983dc8": {
   "primera_vez": "2026-09-08"
+ },
+ "0x00cf723c9dd61679f9ff801178db689ac88e48f4": {
+  "primera_vez": "2026-10-26"
  },
  "0x00d415404751c5baac56eadd9dd6d618fc521c58": {
   "primera_vez": "2026-10-14"
@@ -524,6 +530,9 @@
  "0x02ec1478fd84b05b41d0acaa1319297a01627006": {
   "primera_vez": "2026-09-18"
  },
+ "0x02ed94bdef3bc30751757013743688bb15c16f08": {
+  "primera_vez": "2026-10-26"
+ },
  "0x02ee0af54fdf6e471a4d8f532d2531e6f0929348": {
   "primera_vez": "2026-09-07"
  },
@@ -664,6 +673,9 @@
  },
  "0x03e1f3fbd6d4f4971531e8fb6e21dd273e49b8a1": {
   "primera_vez": "2026-09-21"
+ },
+ "0x03e5aa517466479dd2609861e6a830eba598bf33": {
+  "primera_vez": "2026-10-26"
  },
  "0x03e7b7ec78f57cc2ee95c7300a303ad027eaea5c": {
   "primera_vez": "2026-10-14"
@@ -1496,6 +1508,9 @@
  "0x098b6c6d4d950158673d0ca9ff1f8e8cfe9142f2": {
   "primera_vez": "2026-09-19"
  },
+ "0x0991a5f789f762656a7c4c6c20146f43e9199b1a": {
+  "primera_vez": "2026-10-26"
+ },
  "0x0999a9611500b5431185e312c799c53de74dc74b": {
   "primera_vez": "2026-10-06"
  },
@@ -1828,6 +1843,9 @@
  },
  "0x0b751e2a92a132f8538c87213d5b536d3ab88f4a": {
   "primera_vez": "2026-09-13"
+ },
+ "0x0b7963bf2c121a92b7173c4956eb12b77b916f66": {
+  "primera_vez": "2026-10-26"
  },
  "0x0b83821bb8b9d19582af26122556be7408313140": {
   "primera_vez": "2026-09-13"
@@ -2216,6 +2234,9 @@
  "0x0df57021df576af54c9606494b90e35510f3aa33": {
   "primera_vez": "2026-09-18"
  },
+ "0x0dfc8f3184a814b29ece106d3630a3c5bffe6ada": {
+  "primera_vez": "2026-10-26"
+ },
  "0x0e008684ae576f280c5426a89d3f5e1da1fc7398": {
   "primera_vez": "2026-09-24"
  },
@@ -2329,6 +2350,9 @@
  },
  "0x0ebacadf535057b8b9d96e26738f8e700a064f9f": {
   "primera_vez": "2026-10-12"
+ },
+ "0x0ebdf29c8488fa860f462b8037d18b2a33aeec3e": {
+  "primera_vez": "2026-10-26"
  },
  "0x0ebee39e3c7e1dd0c71414923a28a14d200a2a10": {
   "primera_vez": "2026-10-19"
@@ -2564,6 +2588,9 @@
  "0x1054a45f6fe4dd23be0ee5e2f236704760d2d4c0": {
   "primera_vez": "2026-09-24"
  },
+ "0x105538b0d9744c9e2442b91dd26cc77c1abe5cf1": {
+  "primera_vez": "2026-10-26"
+ },
  "0x1058391d848f9fc19d79851043ae8a4bfbf6cd81": {
   "primera_vez": "2026-09-07"
  },
@@ -2587,6 +2614,9 @@
  },
  "0x1093158be05ea51ea3c505ea03390569044a7f3f": {
   "primera_vez": "2026-10-16"
+ },
+ "0x10968746bc50b2332698d373f0ee616542c8a3b6": {
+  "primera_vez": "2026-10-26"
  },
  "0x109a78691838538f66910274e3f7ee701c98ed41": {
   "primera_vez": "2026-10-06"
@@ -2662,6 +2692,9 @@
  },
  "0x10e6970ebd6fd727d5f0b2ec2e0515c0e430e61f": {
   "primera_vez": "2026-09-20"
+ },
+ "0x10e8b17dc14e431ef82b511cde35c144ad2d9d40": {
+  "primera_vez": "2026-10-26"
  },
  "0x10f067f468e9914f867373d6be06cb2efe67f871": {
   "primera_vez": "2026-09-24"
@@ -2849,6 +2882,9 @@
  "0x12230efb0d16aba4de0dd7ee84ef7ec11a16d1e2": {
   "primera_vez": "2026-09-23"
  },
+ "0x12244cf71d364cb595960e6ef2d04a01bf7f1540": {
+  "primera_vez": "2026-10-26"
+ },
  "0x1226af3513c7d7000d3aa644431147cd7ec951f7": {
   "primera_vez": "2026-10-24"
  },
@@ -2911,6 +2947,9 @@
  },
  "0x1291c9275ea0529b40460b19f44a966a95ce88ab": {
   "primera_vez": "2026-09-18"
+ },
+ "0x129220fb62f7ec44aa7dcebf3559cb20ca3e0259": {
+  "primera_vez": "2026-10-26"
  },
  "0x12950c240b198c2b8a0e02d88ddcac160079ef6a": {
   "primera_vez": "2026-09-05"
@@ -3034,6 +3073,9 @@
  },
  "0x13302cd28ee4e7fa5686b5826752352f7b550de1": {
   "primera_vez": "2026-09-23"
+ },
+ "0x13317e2e1d2f33b53ffd95590c85f2ca332c75f2": {
+  "primera_vez": "2026-10-26"
  },
  "0x133691c6740c6c6fb5b1ce7e0d8fa7106b40982f": {
   "primera_vez": "2026-09-05"
@@ -3359,6 +3401,9 @@
  "0x153bd6aa986e41c00ba4c952c7d81f4820bd30f3": {
   "primera_vez": "2026-10-08"
  },
+ "0x153eb5b54741cede53508e3a52eae5a60775166a": {
+  "primera_vez": "2026-10-26"
+ },
  "0x1545b1aefdbbf071499695c0034645342cf1e501": {
   "primera_vez": "2026-09-26"
  },
@@ -3617,6 +3662,9 @@
  "0x170a03a53fe05bf4ce6753cb0907d05e827bc3c6": {
   "primera_vez": "2026-09-05"
  },
+ "0x170c87d49ff32b5737413b3f8e993154e2e117e0": {
+  "primera_vez": "2026-10-26"
+ },
  "0x17124f21e54c3e0c047c2f168e582034f152aa31": {
   "primera_vez": "2026-09-07"
  },
@@ -3758,6 +3806,9 @@
  "0x17e3be9bbc1de914b705d538ac522ba7615eeee1": {
   "primera_vez": "2026-09-25"
  },
+ "0x17e43fbd5d79d331626c9a218bf6ddd9e397dcc5": {
+  "primera_vez": "2026-10-26"
+ },
  "0x17e9151443fa549360b3a23c77b7a06d34196c84": {
   "primera_vez": "2026-09-13"
  },
@@ -3844,6 +3895,9 @@
  },
  "0x185d611159e7008111200dd36ff4630684d738bf": {
   "primera_vez": "2026-09-05"
+ },
+ "0x185de5841db3c25c9b76ef412efd5b57cf497fbc": {
+  "primera_vez": "2026-10-26"
  },
  "0x185fc2b801fe6792e118e84a3a76af1ccd1e8c77": {
   "primera_vez": "2026-09-26"
@@ -4088,6 +4142,9 @@
  "0x1a05114f4b8ebd5991be99eea8dd21935dd33be3": {
   "primera_vez": "2026-09-05"
  },
+ "0x1a06daeaaf7516a2185c2a983511d180a6e97273": {
+  "primera_vez": "2026-10-26"
+ },
  "0x1a084befca97bbf70f6b5116130563577a4b7f61": {
   "primera_vez": "2026-09-05"
  },
@@ -4123,6 +4180,9 @@
  },
  "0x1a268fbf6376f9192de9f71ec8a52b736c5f3eea": {
   "primera_vez": "2026-09-15"
+ },
+ "0x1a284a8a9bb9738928db9ee866072b56a2982451": {
+  "primera_vez": "2026-10-26"
  },
  "0x1a2e6afa298b1cc50939b4b2b0b430e3c1ef3459": {
   "primera_vez": "2026-09-18"
@@ -4280,6 +4340,9 @@
  "0x1b09a293810548a8c5250047f199bc3922ee3afa": {
   "primera_vez": "2026-10-15"
  },
+ "0x1b0cd4caebf7a95a53aedce621474d8c0ba22690": {
+  "primera_vez": "2026-10-26"
+ },
  "0x1b1aa967b913424e48cf40275b78fa66522e38d7": {
   "primera_vez": "2026-09-29"
  },
@@ -4384,6 +4447,9 @@
  },
  "0x1bce0b70957bd712e7b78b5ebd592b010598c2ca": {
   "primera_vez": "2026-10-24"
+ },
+ "0x1bced43ef1283b425c4a6dda96696a43f48a7765": {
+  "primera_vez": "2026-10-26"
  },
  "0x1bcfd2d5f449e0caff34eeb185e5d3a7d6156a64": {
   "primera_vez": "2026-09-29"
@@ -4502,6 +4568,9 @@
  "0x1ce2d372945fe8600f3d76cacd8c93badaec4e5e": {
   "primera_vez": "2026-09-10"
  },
+ "0x1ceb3bc7a485542490553862c454ec78f4e4a0f5": {
+  "primera_vez": "2026-10-26"
+ },
  "0x1cee2418cd9d3a85a73599cf1990711e24997498": {
   "primera_vez": "2026-10-04"
  },
@@ -4585,6 +4654,9 @@
  },
  "0x1d8229749be36e64004b6bfd7cccd6cd49ac288d": {
   "primera_vez": "2026-09-08"
+ },
+ "0x1d8ba782d2dffb2e497a9399a44dcb6ab9c33b38": {
+  "primera_vez": "2026-10-26"
  },
  "0x1d90fc50e2b12881e86f2fc904a275f8b10fa21c": {
   "primera_vez": "2026-09-16"
@@ -4765,6 +4837,9 @@
  },
  "0x1e8c5c1e556d2076ea1ae3ad5842732f1193e9e3": {
   "primera_vez": "2026-09-05"
+ },
+ "0x1e8e09f9529261860018009a15ac9b056377fed7": {
+  "primera_vez": "2026-10-26"
  },
  "0x1e8ea5bc8b3e3eddd35c203807a8f9cf158d266d": {
   "primera_vez": "2026-09-05"
@@ -5345,6 +5420,9 @@
  "0x22af18256e64cd665b22ed1e89e756c278df92a8": {
   "primera_vez": "2026-10-25"
  },
+ "0x22b3fd8129a84ab4ca1c2220309e4fbca0b257a9": {
+  "primera_vez": "2026-10-26"
+ },
  "0x22b762ecd7e9bd5ceb80c40c291c15f76c8f754f": {
   "primera_vez": "2026-10-14"
  },
@@ -5500,6 +5578,9 @@
  },
  "0x23a195ff7a2d3c80fa59aa139bec59808948df38": {
   "primera_vez": "2026-10-19"
+ },
+ "0x23a1f3daac5c6a660a524c4564410bebba9ce951": {
+  "primera_vez": "2026-10-26"
  },
  "0x23ab27e9f0e9774b12c738b3c4f1040af8d24d31": {
   "primera_vez": "2026-09-24"
@@ -5683,6 +5764,9 @@
  },
  "0x24d56b8b3146b2bf7baa24a37c10a5238ca56ca0": {
   "primera_vez": "2026-09-15"
+ },
+ "0x24d8969e2bd6aabb6c4dfe042ef8b2cd8085217e": {
+  "primera_vez": "2026-10-26"
  },
  "0x24e04cad902422a57346b7757ef4f0069c957d1e": {
   "primera_vez": "2026-10-07"
@@ -5927,6 +6011,9 @@
  "0x263b1811f99a0444258a4a8101242dfdfb006b72": {
   "primera_vez": "2026-09-20"
  },
+ "0x2644427ed57317732c2bf9625fe727101c66a50a": {
+  "primera_vez": "2026-10-26"
+ },
  "0x26451fa7cd39dd6bc6bef638eefde4ec3216e36c": {
   "primera_vez": "2026-09-29"
  },
@@ -5974,6 +6061,9 @@
  },
  "0x269e9fc136169691573ae4739edc3c5805d3008c": {
   "primera_vez": "2026-10-05"
+ },
+ "0x26a1f0ad115f7f884eb3ca69758a6ee84cc7345b": {
+  "primera_vez": "2026-10-26"
  },
  "0x26a3ee2103a1ba2d7236a881077eda9c4a01c6cb": {
   "primera_vez": "2026-10-25"
@@ -6248,6 +6338,9 @@
  "0x28286c5daeca83343f773ce1c2383581871ddce1": {
   "primera_vez": "2026-09-17"
  },
+ "0x2830213c42a91c2d749f006c91158489a979ded2": {
+  "primera_vez": "2026-10-26"
+ },
  "0x2837c128734ade71c55085cbe556699f064ea4a4": {
   "primera_vez": "2026-09-08"
  },
@@ -6289,6 +6382,9 @@
  },
  "0x287594b924834fac09d63d0114f0bed41f5d96f5": {
   "primera_vez": "2026-10-20"
+ },
+ "0x28761f7221b06f016ffc116e56c6cba0344c3fbd": {
+  "primera_vez": "2026-10-26"
  },
  "0x2876292b7ee3a074ed6504d5addda019a534f70a": {
   "primera_vez": "2026-10-01"
@@ -6662,6 +6758,9 @@
  "0x2afed07736987fd59dc90522581a807094cc44ab": {
   "primera_vez": "2026-09-29"
  },
+ "0x2b0e637ba3044a148f7f5d913ca5730a11893551": {
+  "primera_vez": "2026-10-26"
+ },
  "0x2b12b6af45f76762f5d4409a5254841a7540f39b": {
   "primera_vez": "2026-10-09"
  },
@@ -6895,6 +6994,9 @@
  },
  "0x2c978871b1b2fbb454ca70e4212b69c733d77d11": {
   "primera_vez": "2026-10-20"
+ },
+ "0x2c9cd073fc551de0c0b6cab820fce7d4fae6f8cc": {
+  "primera_vez": "2026-10-26"
  },
  "0x2ca4927174ba283d8a57f60ef3589844035a2930": {
   "primera_vez": "2026-09-02"
@@ -7331,6 +7433,9 @@
  "0x2f696e8635a65eb82339dd26722b5838d92adb2e": {
   "primera_vez": "2026-10-07"
  },
+ "0x2f71a6c4b240022eea905b843150718fa64b30cc": {
+  "primera_vez": "2026-10-26"
+ },
  "0x2f72df936e1613705cccf6a0471f26d84197b3ed": {
   "primera_vez": "2026-09-09"
  },
@@ -7363,6 +7468,9 @@
  },
  "0x2fb3b1fc0c3cdbf3aa33b64325c2de0fdbb2e87c": {
   "primera_vez": "2026-09-22"
+ },
+ "0x2fc6e2be854ac708293329bd23686ebf1ae10f0c": {
+  "primera_vez": "2026-10-26"
  },
  "0x2fc7c86587b05255e6398cff253bd773358f88d1": {
   "primera_vez": "2026-09-16"
@@ -7525,6 +7633,9 @@
  },
  "0x30d06154380cab5acf75dcc9bb2e564fd3b6fc22": {
   "primera_vez": "2026-10-14"
+ },
+ "0x30d121c9a098a2e090d223c0e1baf7896560fb13": {
+  "primera_vez": "2026-10-26"
  },
  "0x30d1461e1a9f741c3a4c3d564fd668df6a997316": {
   "primera_vez": "2026-10-25"
@@ -8228,6 +8339,9 @@
  "0x357964620189ed90974a4048bb050e7398721e2f": {
   "primera_vez": "2026-09-18"
  },
+ "0x357da23d2ac5e31abb025939c3e0b51b7b18d963": {
+  "primera_vez": "2026-10-26"
+ },
  "0x358ed50f10981797eb582640db6dad92bcee7902": {
   "primera_vez": "2026-10-03"
  },
@@ -8507,6 +8621,9 @@
  "0x378871ce6b920920a65c48e20f8d42bae7bf1ce5": {
   "primera_vez": "2026-09-08"
  },
+ "0x3789b49f37a0753df201b916ada35a58586a0832": {
+  "primera_vez": "2026-10-26"
+ },
  "0x3789eecdf88ac9a9d4fa97d1f46360f87dcabf7f": {
   "primera_vez": "2026-10-20"
  },
@@ -8710,6 +8827,9 @@
  },
  "0x38cd7c3950353accf9962f07d33de95e6b937a9f": {
   "primera_vez": "2026-10-21"
+ },
+ "0x38cd9ae8f2aec542ea85fea94b0baa844e166f23": {
+  "primera_vez": "2026-10-26"
  },
  "0x38ce31933f66dd9cba5d1ed0520b160ac9900c8f": {
   "primera_vez": "2026-10-21"
@@ -9590,6 +9710,9 @@
  "0x3ec1aebfbeed774ff6e25f7ce9b1631b02417688": {
   "primera_vez": "2026-09-16"
  },
+ "0x3ec5bc2e056165aa2eb897620014114868281ac4": {
+  "primera_vez": "2026-10-26"
+ },
  "0x3ec904887fc42be7242d59f5838f30e1ee245573": {
   "primera_vez": "2026-10-17"
  },
@@ -9872,6 +9995,9 @@
  "0x40687f12207d1b46b633f9921c18a229fbb77d23": {
   "primera_vez": "2026-09-09"
  },
+ "0x40707da2d84369b4a2c497f7745666ed29139b7f": {
+  "primera_vez": "2026-10-26"
+ },
  "0x4074af6b0602df217012aeb67311c8d026e07b09": {
   "primera_vez": "2026-10-12"
  },
@@ -10111,6 +10237,9 @@
  },
  "0x422372c35d9573251e352c3b554cf7f994c5e8f2": {
   "primera_vez": "2026-09-20"
+ },
+ "0x4226bb06b6a5206e91eeaa7b1a7813cf8c78462f": {
+  "primera_vez": "2026-10-26"
  },
  "0x42283990825b0f9218a6322b01f83248d781fe1f": {
   "primera_vez": "2026-09-05"
@@ -11021,6 +11150,9 @@
  "0x4824d50e3086c9159c47a395939f4b87add502d9": {
   "primera_vez": "2026-09-24"
  },
+ "0x482831aa45e9a543553cb7a002f95ee3711a9677": {
+  "primera_vez": "2026-10-26"
+ },
  "0x482849e1b58481e224d7857c28c8e144ae24c71a": {
   "primera_vez": "2026-09-28"
  },
@@ -11198,6 +11330,9 @@
  "0x492dad75b2cc3b75813cb4bbceb978055c82662e": {
   "primera_vez": "2026-09-06"
  },
+ "0x492f4856ab7771f3831ddf8f7047354701a7d55a": {
+  "primera_vez": "2026-10-26"
+ },
  "0x493364de7f4a39ed24f9c68ece229973f324d369": {
   "primera_vez": "2026-09-05"
  },
@@ -11315,6 +11450,9 @@
  "0x4a2f8e4fb58c89d1901ddceb8372c355759d7668": {
   "primera_vez": "2026-10-03"
  },
+ "0x4a31a545956e5801a9954f003456c54c6d3bec52": {
+  "primera_vez": "2026-10-26"
+ },
  "0x4a3fbb5914b3e248ae4f3bbde4df904b5e3c1349": {
   "primera_vez": "2026-10-12"
  },
@@ -11344,6 +11482,9 @@
  },
  "0x4a6502e3ede179a2b95adef387cc9cc069a0743e": {
   "primera_vez": "2026-10-14"
+ },
+ "0x4a654c62c636d5864b4fc177b97aeda4d495b7ab": {
+  "primera_vez": "2026-10-26"
  },
  "0x4a660dfcc2445764e7b8056ee917259307aaddce": {
   "primera_vez": "2026-10-07"
@@ -11407,6 +11548,9 @@
  },
  "0x4ad8a23d8af7a3c9f8f2804a0f1e0016c132813b": {
   "primera_vez": "2026-10-14"
+ },
+ "0x4ada9930ce2b2c060f2bd5f1ae2143d61d122886": {
+  "primera_vez": "2026-10-26"
  },
  "0x4add84c35ca21018d7dd32681fee7471f4a75974": {
   "primera_vez": "2026-10-07"
@@ -11515,6 +11659,9 @@
  },
  "0x4b9b60ccb8c40581890f2224dafd7f826967f47a": {
   "primera_vez": "2026-09-25"
+ },
+ "0x4b9cf9153935e17000d896e78f4230ecd3d9d997": {
+  "primera_vez": "2026-10-26"
  },
  "0x4ba1e9e275ef61b56c99532d0066506436201d73": {
   "primera_vez": "2026-09-05"
@@ -12172,6 +12319,9 @@
  },
  "0x4fce9ef5b4172ec48bc9ac4613043cd20a41a833": {
   "primera_vez": "2026-10-15"
+ },
+ "0x4fcf6efab511344271365e235533291beae72d94": {
+  "primera_vez": "2026-10-26"
  },
  "0x4fd04553468610e5a88a2cffa38e057c954312da": {
   "primera_vez": "2026-09-11"
@@ -12926,6 +13076,12 @@
  "0x549de4f045f71d962fff89e8c023b52b9db89c2c": {
   "primera_vez": "2026-09-05"
  },
+ "0x54a437150315da2403fb3cce29d28d18076b61f7": {
+  "primera_vez": "2026-10-26"
+ },
+ "0x54a7240cea67b8c41b7c7f2b485360f37331aef4": {
+  "primera_vez": "2026-10-26"
+ },
  "0x54aba0ac26572a43218a826c6dbaf02313cc1d44": {
   "primera_vez": "2026-10-04"
  },
@@ -13466,6 +13622,9 @@
  "0x57e675e9332fd2bce4b7697fd2fbdfe302a1f6c7": {
   "primera_vez": "2026-10-05"
  },
+ "0x57ec6afd715e678c1b392002da312f424403ada7": {
+  "primera_vez": "2026-10-26"
+ },
  "0x58195caab52a01285e2a174ea599e96f9cf7f1d7": {
   "primera_vez": "2026-10-04"
  },
@@ -13556,6 +13715,9 @@
  "0x58a28ed593d726ad8be1b40f3b93aac918d9afa6": {
   "primera_vez": "2026-10-04"
  },
+ "0x58a6959adb46003c139383a27d86e53b612d12e9": {
+  "primera_vez": "2026-10-26"
+ },
  "0x58a722b5f37435cab8957a17fc575bb136e0b48b": {
   "primera_vez": "2026-09-22"
  },
@@ -13582,6 +13744,9 @@
  },
  "0x58d221019fc507bfbfbd15c3a0bf5a3ffbddf34d": {
   "primera_vez": "2026-10-07"
+ },
+ "0x58d9cfb9bd5661f93777eb0660228ce8ccaf344c": {
+  "primera_vez": "2026-10-26"
  },
  "0x58de8d5e9c8e5ed75662b496bf0a9dfe28e9d45d": {
   "primera_vez": "2026-09-21"
@@ -13882,6 +14047,9 @@
  },
  "0x5ad96a3986b9d2cfab1d39c68002edd17263f5ef": {
   "primera_vez": "2026-09-01"
+ },
+ "0x5ada44f5dcfdd1928b8f271f26234202cf49165c": {
+  "primera_vez": "2026-10-26"
  },
  "0x5adb835458cfc1770ee0a070f84eccff250712f3": {
   "primera_vez": "2026-09-28"
@@ -14218,6 +14386,9 @@
  },
  "0x5cc154794b4813a3b4b9ac98f054b59338971a99": {
   "primera_vez": "2026-09-18"
+ },
+ "0x5cc46330cd1f662d245d853698509c93d2392d25": {
+  "primera_vez": "2026-10-26"
  },
  "0x5cc518f6e6d35db0f12397acb93af15ade5c5cbb": {
   "primera_vez": "2026-10-03"
@@ -14759,6 +14930,9 @@
  "0x60afb1c63bd240cfa36d4b367668bddedc5a465a": {
   "primera_vez": "2026-09-19"
  },
+ "0x60b0eb775c6fea015ab267cf226b3b6248a61e40": {
+  "primera_vez": "2026-10-26"
+ },
  "0x60b2418ab0167602d532ea6ed4728055dda1c1a4": {
   "primera_vez": "2026-09-05"
  },
@@ -14854,6 +15028,9 @@
  },
  "0x614d1049bf4353df3d8f4582fafd2394e18ea435": {
   "primera_vez": "2026-10-07"
+ },
+ "0x614deecd8f6c8b94de75b94502706d446ba1f111": {
+  "primera_vez": "2026-10-26"
  },
  "0x614e25cef68af71aebcd064569fb38516e213d4f": {
   "primera_vez": "2026-09-12"
@@ -15043,6 +15220,9 @@
  },
  "0x628132322864e09b888f053cd32ea2634373e9fa": {
   "primera_vez": "2026-10-06"
+ },
+ "0x6281f239f652cd6202091dca4a96ebde3b3495c9": {
+  "primera_vez": "2026-10-26"
  },
  "0x62879659e71ff7d00f964afd52d754193d193a5b": {
   "primera_vez": "2026-10-15"
@@ -15239,6 +15419,9 @@
  "0x63bc58472a8449edd1d1af0b0c03cfc7c832da2f": {
   "primera_vez": "2026-10-13"
  },
+ "0x63bc5fad2e1deb4fbf17d6941756bb4d7ab66107": {
+  "primera_vez": "2026-10-26"
+ },
  "0x63c059a07a202527cca32651d56a4bea09fd3337": {
   "primera_vez": "2026-09-20"
  },
@@ -15287,8 +15470,14 @@
  "0x640bc6c61047dc4d6b38ba66512bf7ae85271d4c": {
   "primera_vez": "2026-10-18"
  },
+ "0x640df6aa9a62f0ef470e51828afd957a13c858da": {
+  "primera_vez": "2026-10-26"
+ },
  "0x6410b0886a1f0db4c1242e1190013fe4b1e85bcd": {
   "primera_vez": "2026-09-17"
+ },
+ "0x6413d8f85a2eff1dc3ee3e0db7d8c89ccbd51dc5": {
+  "primera_vez": "2026-10-26"
  },
  "0x64174450c49242535b4184e3988cc4145b80526c": {
   "primera_vez": "2026-09-05"
@@ -15578,6 +15767,9 @@
  "0x65c252c410276e7aeb86154acf218b7ea6ca1ecf": {
   "primera_vez": "2026-09-14"
  },
+ "0x65c30a1bb9f8e6fbe4dd1ad43271cf4ccc577a37": {
+  "primera_vez": "2026-10-26"
+ },
  "0x65c7872411a715c6b2a3b64c78e89df15bbf1a94": {
   "primera_vez": "2026-09-29"
  },
@@ -15655,6 +15847,9 @@
  },
  "0x661b8c2dac76169bcdea154c5588684b67eb4eec": {
   "primera_vez": "2026-09-25"
+ },
+ "0x661c021747a251f7d15911da533beb48fb06c55a": {
+  "primera_vez": "2026-10-26"
  },
  "0x661eaaed1e3e375b38bee50246a0a775d633cc09": {
   "primera_vez": "2026-09-23"
@@ -16180,6 +16375,9 @@
  },
  "0x691ddfb64e7ebf4c497b41feab4747408c57bcee": {
   "primera_vez": "2026-09-06"
+ },
+ "0x6920e5f40ca650078ac35fbf32ea40fee697f48a": {
+  "primera_vez": "2026-10-26"
  },
  "0x69231acc625b236c5236746fb328accb91b669a8": {
   "primera_vez": "2026-10-15"
@@ -16955,6 +17153,9 @@
  "0x6dd3146cead144385974e958305d7e4c352846b7": {
   "primera_vez": "2026-09-06"
  },
+ "0x6dd6127a6fac8c91fbed0af67cfe20c6e5ea3201": {
+  "primera_vez": "2026-10-26"
+ },
  "0x6dd63a892ff754ad7f67337892789f8728edcd27": {
   "primera_vez": "2026-09-24"
  },
@@ -16963,6 +17164,9 @@
  },
  "0x6dec3748f5d2d538836bedbb8d63191255cd37f6": {
   "primera_vez": "2026-09-29"
+ },
+ "0x6def8868c0edcd9bd1e9c5943f4f21885d8e962d": {
+  "primera_vez": "2026-10-26"
  },
  "0x6df636c93b1a3f33fe1c4a21b45f82173b6238f3": {
   "primera_vez": "2026-09-18"
@@ -17122,6 +17326,9 @@
  },
  "0x6ecbb68c07bd4be7adb7f0365e9263e382aeca2d": {
   "primera_vez": "2026-09-05"
+ },
+ "0x6ecf94b09613864a9796d8d66d63551956f0632c": {
+  "primera_vez": "2026-10-26"
  },
  "0x6ed64b87629062789d297cfed56ade56f70eb26a": {
   "primera_vez": "2026-10-13"
@@ -17669,6 +17876,9 @@
  "0x72167f2ee1e61522ca163469f732eebea4648123": {
   "primera_vez": "2026-09-28"
  },
+ "0x7217dee690af5c1ff8db8e938ffcb54d1e053773": {
+  "primera_vez": "2026-10-26"
+ },
  "0x721bcc0b3927f21b1b072240bf8031f9cb3c90c5": {
   "primera_vez": "2026-09-29"
  },
@@ -17846,6 +18056,9 @@
  "0x732f7178048a7329cb37e251845d4d39d62ab4ae": {
   "primera_vez": "2026-10-25"
  },
+ "0x73348ab54546a66e18d70f8b98eb63b5ce280bc0": {
+  "primera_vez": "2026-10-26"
+ },
  "0x733555d85a4460804fd5fc3cefcc7954a1107ffe": {
   "primera_vez": "2026-10-03"
  },
@@ -17938,6 +18151,9 @@
  },
  "0x739a2c980f52fbcd1ad6c9ae73d3c37fe8026e09": {
   "primera_vez": "2026-09-15"
+ },
+ "0x739b98c2584e9e18973e6f44fe8b1e4cec7f77ae": {
+  "primera_vez": "2026-10-26"
  },
  "0x73a0c270917f63e28d29212d4a335b8f78854bde": {
   "primera_vez": "2026-10-04"
@@ -18254,6 +18470,9 @@
  "0x75b32fdb235c406f0f8e7a0ab3433791c30f211f": {
   "primera_vez": "2026-09-22"
  },
+ "0x75b8d093bb6236549f719f16851d56309ec64abf": {
+  "primera_vez": "2026-10-26"
+ },
  "0x75bf664c143e8b9fd45327e588c259242da86d9a": {
   "primera_vez": "2026-09-05"
  },
@@ -18394,6 +18613,9 @@
  },
  "0x76b2da3d78a2f0f5f64efa31200a2b351d2d9cbb": {
   "primera_vez": "2026-09-08"
+ },
+ "0x76b9420660f61cd2bb2a6a7d2d71f7f644cd58f1": {
+  "primera_vez": "2026-10-26"
  },
  "0x76bf72092bbfe1c935b6d834f70dd9e75b057fd6": {
   "primera_vez": "2026-09-21"
@@ -18542,11 +18764,17 @@
  "0x77954a5fd4cecce5d6a84d6728e64da0d00cf8ad": {
   "primera_vez": "2026-10-08"
  },
+ "0x779e5e469d5de3a13e563f736ffcf47ebe5584c5": {
+  "primera_vez": "2026-10-26"
+ },
  "0x77a084cf1656d6bbcff38fcbcdffd5a82b728153": {
   "primera_vez": "2026-09-17"
  },
  "0x77a0c1d08979555e6dc28a50c26ce622a52d46c1": {
   "primera_vez": "2026-09-30"
+ },
+ "0x77a613b6c17d533edb0542136a9828851db8359d": {
+  "primera_vez": "2026-10-26"
  },
  "0x77a85c04b75014acb6f769da49db665b4add81be": {
   "primera_vez": "2026-09-18"
@@ -18745,6 +18973,9 @@
  },
  "0x787978bc45dad97e4900e68fee309f45b2f66196": {
   "primera_vez": "2026-10-10"
+ },
+ "0x7880f070b597b9642499a14ca1c2e8cec8b10049": {
+  "primera_vez": "2026-10-26"
  },
  "0x7885f1d9dee4a6798bbfdb32fadc407569dead04": {
   "primera_vez": "2026-10-20"
@@ -19241,6 +19472,9 @@
  "0x7b6fea4ca9811a716d707974550982ad1fb37256": {
   "primera_vez": "2026-10-22"
  },
+ "0x7b7012be7915c02278e695638f0194830fe848de": {
+  "primera_vez": "2026-10-26"
+ },
  "0x7b7736a2c07c4332ffad45a039d2117ae15e3f66": {
   "primera_vez": "2026-09-12"
  },
@@ -19252,6 +19486,9 @@
  },
  "0x7b8c87e2a2fbb9ab6cecce8118ec2366951ec4b6": {
   "primera_vez": "2026-10-02"
+ },
+ "0x7b99ca0020017ba8afa534bdb2c534573f996928": {
+  "primera_vez": "2026-10-26"
  },
  "0x7b9f8e3ac2f6c61bd1cd28544428c68da1861733": {
   "primera_vez": "2026-09-08"
@@ -20537,6 +20774,9 @@
  "0x8448d1527f9d30ea15874f0626a7773a8c834421": {
   "primera_vez": "2026-10-14"
  },
+ "0x844fb78e99255efa75fb2d379efa9328e2296de3": {
+  "primera_vez": "2026-10-26"
+ },
  "0x84521b05c9afd43d2578b697244471536b1e4369": {
   "primera_vez": "2026-10-04"
  },
@@ -20560,6 +20800,9 @@
  },
  "0x8464d7fc7b522d4bf6ed8dc710e82fec6767c02e": {
   "primera_vez": "2026-10-11"
+ },
+ "0x8464eb6ef6b8cdf2d161f46aaabce96068dceccb": {
+  "primera_vez": "2026-10-26"
  },
  "0x8470b03666cca51a01bdf6ef478dbfbbee38810f": {
   "primera_vez": "2026-09-29"
@@ -21528,6 +21771,9 @@
  "0x8a9db98ef7782695cc208e0c20e8dfca351b7e0e": {
   "primera_vez": "2026-09-21"
  },
+ "0x8aa98817e4e1a1417fb85c797550ac2813be38f3": {
+  "primera_vez": "2026-10-26"
+ },
  "0x8aaefe496b7bcb65f1f12ac5b1fc0f284d86554c": {
   "primera_vez": "2026-09-07"
  },
@@ -21630,11 +21876,17 @@
  "0x8b451a86abc2b5e4506a159e22634c17fe219826": {
   "primera_vez": "2026-10-04"
  },
+ "0x8b54ec8f74ed5b73596871485cc1988fb90346cd": {
+  "primera_vez": "2026-10-26"
+ },
  "0x8b5be7b74ce4a69521dc54b3bb3d636a1e19f1d2": {
   "primera_vez": "2026-09-08"
  },
  "0x8b5c00c039c8a13ffa8c352b9979e1523d3b9306": {
   "primera_vez": "2026-09-08"
+ },
+ "0x8b5d0dc9e5f9e041bc51dc33cb180dc9136d709b": {
+  "primera_vez": "2026-10-26"
  },
  "0x8b641d866610d15420c73affa2562fe3af7ae930": {
   "primera_vez": "2026-10-05"
@@ -21938,6 +22190,9 @@
  },
  "0x8d4184962959531077dea452e4277fb81a4408c8": {
   "primera_vez": "2026-09-08"
+ },
+ "0x8d4b688cbf5b11f8c915ebf6f34e3f5bf76e9e03": {
+  "primera_vez": "2026-10-26"
  },
  "0x8d4d6995907c5e535384c2a811b7b4e643fea613": {
   "primera_vez": "2026-09-29"
@@ -22794,11 +23049,17 @@
  "0x9260b4a8b68c5ea439246b9c03cd577af8435f4d": {
   "primera_vez": "2026-10-03"
  },
+ "0x92653ef4e9a31a160df4fb133d3c92a3c895b25a": {
+  "primera_vez": "2026-10-26"
+ },
  "0x9266865bb6afb4c4f618544dd3b8c970f17aa664": {
   "primera_vez": "2026-09-03"
  },
  "0x9267960b7241846863dc1f589299fd0245ac9b3d": {
   "primera_vez": "2026-09-05"
+ },
+ "0x926c326227bee6ad3fc994d24248f7821ae489bc": {
+  "primera_vez": "2026-10-26"
  },
  "0x926fc0d62282f5fcebf95e527072adda6868bad5": {
   "primera_vez": "2026-10-03"
@@ -23036,6 +23297,9 @@
  },
  "0x93ea06eb03656a5771756d3246cdf7a965a9f5e5": {
   "primera_vez": "2026-09-09"
+ },
+ "0x93ea5bd1ec07ebc9617adc5f0fe40daabb0d358b": {
+  "primera_vez": "2026-10-26"
  },
  "0x93ebb2980dfbcd6c5fb0312eb6119682ff029afc": {
   "primera_vez": "2026-09-05"
@@ -23307,6 +23571,9 @@
  "0x95d8bba9e5af3de140917393f4ba911718f88c38": {
   "primera_vez": "2026-10-07"
  },
+ "0x95dd59002c02819608bef92f293e4e1ebbe5512b": {
+  "primera_vez": "2026-10-26"
+ },
  "0x95e245bb44db573dda869d91ed4ad9be687f71d2": {
   "primera_vez": "2026-10-22"
  },
@@ -23390,6 +23657,9 @@
  },
  "0x9664ec4af741d0a2ec0a80237398403e6f5b9a70": {
   "primera_vez": "2026-09-23"
+ },
+ "0x966c5496e978621b24db1177187ff1f9a02f4b9f": {
+  "primera_vez": "2026-10-26"
  },
  "0x96717e4da7b313e0670d3b5b1acb33f993213cbc": {
   "primera_vez": "2026-10-19"
@@ -23826,6 +24096,9 @@
  "0x98f155c8dcf1aefc6945476485dadeb82d29d112": {
   "primera_vez": "2026-09-17"
  },
+ "0x98f72253951340ccae81fb2a3945d951e4411009": {
+  "primera_vez": "2026-10-26"
+ },
  "0x98fe6f3d85f102d365c60a6ed64bc4b1c615a0e7": {
   "primera_vez": "2026-09-06"
  },
@@ -24168,6 +24441,9 @@
  "0x9afe92fb479703ae8264debdd3ba7736c991c666": {
   "primera_vez": "2026-10-23"
  },
+ "0x9b0d6043b53a68fb7852fe917d1f9638e31d0cef": {
+  "primera_vez": "2026-10-26"
+ },
  "0x9b0de5739e6c71ac8b1371cb8e450b41b26f451e": {
   "primera_vez": "2026-09-20"
  },
@@ -24272,6 +24548,9 @@
  },
  "0x9bb6e9a1e81b11f938da15126ce6320decc35262": {
   "primera_vez": "2026-10-14"
+ },
+ "0x9bc2789dd18d453e9ffa4e12fb3852c952af83d0": {
+  "primera_vez": "2026-10-26"
  },
  "0x9bc915b5dbf078cb2258c853b03832742bd1aa5d": {
   "primera_vez": "2026-10-07"
@@ -24474,6 +24753,9 @@
  "0x9d40d02012a6ee5d2b5ff14bb4e32cc2c6c4665c": {
   "primera_vez": "2026-10-02"
  },
+ "0x9d480d2e3a1a3e5fe678ca8b932b4ca7d1503e2c": {
+  "primera_vez": "2026-10-26"
+ },
  "0x9d555f4f1acd9efc126e8632485198a2431de1d1": {
   "primera_vez": "2026-09-05"
  },
@@ -24654,6 +24936,9 @@
  "0x9e3ff701738a20e4304dc1b72b5f7b7cda341083": {
   "primera_vez": "2026-09-22"
  },
+ "0x9e48a35d6937002099d403db439d955fc118d2f2": {
+  "primera_vez": "2026-10-26"
+ },
  "0x9e4b638dcb7d0c15b371f19e88902e45f8a301e5": {
   "primera_vez": "2026-09-05"
  },
@@ -24695,6 +24980,9 @@
  },
  "0x9e6e77c517237ccdbaa60315c04a4857aa464bcc": {
   "primera_vez": "2026-09-14"
+ },
+ "0x9e7617612a1746827d026a391bc63e137a7a2fd7": {
+  "primera_vez": "2026-10-26"
  },
  "0x9e7f9d49c650b2f3b5404c11879e08a74bd72b2f": {
   "primera_vez": "2026-10-07"
@@ -24902,6 +25190,9 @@
  },
  "0x9fc7eeacd27d38a436462bb43ad97e49106820d7": {
   "primera_vez": "2026-09-05"
+ },
+ "0x9fcad160a96abbfa978400b545ac5661b27c4c09": {
+  "primera_vez": "2026-10-26"
  },
  "0x9fd12a07f48689e72d706be662e936d99529e9ea": {
   "primera_vez": "2026-09-09"
@@ -25139,6 +25430,9 @@
  },
  "0xa13723a09eba5825055113700632ac8d7f2601a3": {
   "primera_vez": "2026-09-21"
+ },
+ "0xa1390361940222803adf4d551065e2770214dc54": {
+  "primera_vez": "2026-10-26"
  },
  "0xa13a2298e3b991da01cf7392e22b90ce08090d25": {
   "primera_vez": "2026-10-22"
@@ -25449,6 +25743,9 @@
  "0xa377592da8ea5c560857834a77aa68bbbc6eaf0a": {
   "primera_vez": "2026-09-05"
  },
+ "0xa379bedcc2a237cab1021cc2a4744edfb6c42618": {
+  "primera_vez": "2026-10-26"
+ },
  "0xa37d48726d61e50575e81ff00733d14927e7ca25": {
   "primera_vez": "2026-10-24"
  },
@@ -25487,6 +25784,9 @@
  },
  "0xa3a2a1018c28765c839ad770e8e5a3f18930bca2": {
   "primera_vez": "2026-10-19"
+ },
+ "0xa3a516de645ca42025cc5183a8bab84f7691aa28": {
+  "primera_vez": "2026-10-26"
  },
  "0xa3acb8a5631e04c94717ce8a9d9aef842eff746f": {
   "primera_vez": "2026-10-12"
@@ -26058,6 +26358,9 @@
  "0xa70ac79d24b8ea7dc8899d6c2df26488130b4be9": {
   "primera_vez": "2026-09-02"
  },
+ "0xa70c2f1bca5b2d01b51bf74fcda0a587c013162e": {
+  "primera_vez": "2026-10-26"
+ },
  "0xa70f9364af53ae7df5a0005d6bec2ee2d9ce4de7": {
   "primera_vez": "2026-10-21"
  },
@@ -26510,6 +26813,9 @@
  },
  "0xaa4f24a57ff534b02ca52498ced0370bbdb2b409": {
   "primera_vez": "2026-10-08"
+ },
+ "0xaa503ae37ba4a6fcc2fd6cc3f3dc776ab11b7b67": {
+  "primera_vez": "2026-10-26"
  },
  "0xaa54dedd6fc6d38d811cfbf7c658a6c912869060": {
   "primera_vez": "2026-09-20"
@@ -27570,6 +27876,9 @@
  "0xb0d243471fc85ae2ee7ab9409956c5fada6dbb0a": {
   "primera_vez": "2026-09-06"
  },
+ "0xb0d2b60e47a3d8ec3dc16c0e232a1ecb1b172a06": {
+  "primera_vez": "2026-10-26"
+ },
  "0xb0d59a61d0d676b1a9a1569c1dbf24484278b93d": {
   "primera_vez": "2026-09-29"
  },
@@ -28254,6 +28563,9 @@
  "0xb5086b25144d26ae3103cc259bd6946c0355c8f0": {
   "primera_vez": "2026-10-05"
  },
+ "0xb5095f67c24d6650a120aaf2228f3e4bf282d13f": {
+  "primera_vez": "2026-10-26"
+ },
  "0xb51897536160a289b2f07ca6eac9b0da30259f0a": {
   "primera_vez": "2026-09-05"
  },
@@ -28494,6 +28806,9 @@
  "0xb6a5fab56dbab88daf34acb33f907271bc164503": {
   "primera_vez": "2026-09-19"
  },
+ "0xb6a766f531fa8e222f460df11d62b0f84b7b65f3": {
+  "primera_vez": "2026-10-26"
+ },
  "0xb6ae5c115d68cdab10f7a37fc7c7cbc413231c8f": {
   "primera_vez": "2026-09-05"
  },
@@ -28641,6 +28956,9 @@
  "0xb7b41d282e1bbe271a238e543b263be92ec0f84f": {
   "primera_vez": "2026-10-05"
  },
+ "0xb7bbc1586a486d284e185cca696a9daeee5b3e0f": {
+  "primera_vez": "2026-10-26"
+ },
  "0xb7bc928405027be58ef6a4e4337f56e21646dd4b": {
   "primera_vez": "2026-09-20"
  },
@@ -28694,6 +29012,9 @@
  },
  "0xb80aef4b7878dcf594f08840d24c729e2f613bce": {
   "primera_vez": "2026-09-17"
+ },
+ "0xb80d66efd3e105c4bfb6de4b4ec02ca3bcabfe43": {
+  "primera_vez": "2026-10-26"
  },
  "0xb80efe792bda2ff806174773064657e8ae4f86e7": {
   "primera_vez": "2026-10-23"
@@ -29148,6 +29469,12 @@
  "0xbaee7eaccd570345ed4e6b4a64799c6410b1ef4c": {
   "primera_vez": "2026-10-20"
  },
+ "0xbb027dc91afd23a0164d7584fec9da4e723f5715": {
+  "primera_vez": "2026-10-26"
+ },
+ "0xbb064fbffa1c75c77e9c38e7374de1fc9f92cc3a": {
+  "primera_vez": "2026-10-26"
+ },
  "0xbb07ff95593e6fa550cd669a44938fc1a5704dfb": {
   "primera_vez": "2026-09-22"
  },
@@ -29486,6 +29813,9 @@
  },
  "0xbd69447ab866924dbf3fdc0060dbe711971fadf4": {
   "primera_vez": "2026-10-25"
+ },
+ "0xbd76be3b5f3f42b8542ae68e4c1e070fcb5f0c76": {
+  "primera_vez": "2026-10-26"
  },
  "0xbd7ed96aae31db997ca6c6f6e3a9fc05db92c741": {
   "primera_vez": "2026-09-11"
@@ -30081,6 +30411,9 @@
  "0xc11487a2cb77f7c6d419a055fa51d280feea2e62": {
   "primera_vez": "2026-09-12"
  },
+ "0xc114b2f6a5ac3bd2ba2d854f7cef687a440eab48": {
+  "primera_vez": "2026-10-26"
+ },
  "0xc12056368831ab89083dd52b5ec4e87025efd5a1": {
   "primera_vez": "2026-09-06"
  },
@@ -30440,6 +30773,9 @@
  },
  "0xc373c83be1de18d441702a71c05c6cc6fae6a302": {
   "primera_vez": "2026-09-07"
+ },
+ "0xc38d1ec6fddea0c46eb5174685bd38dc59cec86f": {
+  "primera_vez": "2026-10-26"
  },
  "0xc3921cb303d02d2191d06fa3699e5fa5f0522a1e": {
   "primera_vez": "2026-10-19"
@@ -31008,6 +31344,9 @@
  "0xc6faf2b99d0346e07bb54bf9ab4e3f4a27b4dc32": {
   "primera_vez": "2026-10-07"
  },
+ "0xc701f0cae118d129b161ade2d59e02abe8d0b427": {
+  "primera_vez": "2026-10-26"
+ },
  "0xc70202c243354a34575d0c0326e7c3947d5b640a": {
   "primera_vez": "2026-10-05"
  },
@@ -31220,6 +31559,9 @@
  },
  "0xc87edc449d9120cc3059890cb7e71b1d3771ff2f": {
   "primera_vez": "2026-09-21"
+ },
+ "0xc882fb57b1ff5ce0ffb737e6c9cdfeeaa6912d6f": {
+  "primera_vez": "2026-10-26"
  },
  "0xc8924ba515870716807889fdf0e710a7e69a360f": {
   "primera_vez": "2026-09-15"
@@ -31764,6 +32106,9 @@
  "0xcc128e7895e1a9f4deb26e8c3cab94414e3a57bf": {
   "primera_vez": "2026-09-05"
  },
+ "0xcc1c32da2ac09b9cc5a088cba124e72bd09af9bb": {
+  "primera_vez": "2026-10-26"
+ },
  "0xcc209e4d57d720a32aafd54b3b1c1d9496c82cd6": {
   "primera_vez": "2026-09-28"
  },
@@ -32124,6 +32469,9 @@
  "0xce0d8ef6f75be8f237c4d7ca45b6c843ca2398e2": {
   "primera_vez": "2026-10-19"
  },
+ "0xce0e990b76cf74d11002ce27ea31749a99b790a6": {
+  "primera_vez": "2026-10-26"
+ },
  "0xce0fc417a9f39d38695c0e916589d51fac88e3bd": {
   "primera_vez": "2026-09-08"
  },
@@ -32211,6 +32559,9 @@
  "0xcea8f9e8471a819c0cae202729638a9e3577b842": {
   "primera_vez": "2026-10-09"
  },
+ "0xceacad06ffe899bdb03ec42918478bdc67b074c0": {
+  "primera_vez": "2026-10-26"
+ },
  "0xceaf79977ca372b9321da04772ea04541bf3ee86": {
   "primera_vez": "2026-09-26"
  },
@@ -32252,6 +32603,9 @@
  },
  "0xceeaf2b707782788c1040c9f5cdd6f6cec0c2d9e": {
   "primera_vez": "2026-09-19"
+ },
+ "0xceffae363d15b447a9aa595d575be58185b22517": {
+  "primera_vez": "2026-10-26"
  },
  "0xcf03d8c448b60bb5e0357340675f37b6a48d8332": {
   "primera_vez": "2026-10-21"
@@ -32673,6 +33027,9 @@
  "0xd158ab29974537b266d37ef88ae71ff4334bab69": {
   "primera_vez": "2026-09-05"
  },
+ "0xd158c30c7675220fd6a924bf810a964039a9b396": {
+  "primera_vez": "2026-10-26"
+ },
  "0xd15c24b3434ee3a44b9c5f8b70e0a9258143352a": {
   "primera_vez": "2026-09-23"
  },
@@ -32708,6 +33065,9 @@
  },
  "0xd19176a1108a218df0eced4899e84ec59df6a2c1": {
   "primera_vez": "2026-09-28"
+ },
+ "0xd199ce64eb902fd58cc4e5ba19f39b03ae4b1d8e": {
+  "primera_vez": "2026-10-26"
  },
  "0xd19ee201684c228ccc9f519bfbb5fb5f2ba6aada": {
   "primera_vez": "2026-10-10"
@@ -32877,6 +33237,9 @@
  "0xd2944617c67d7fe84b623c72341187ac89d79bd3": {
   "primera_vez": "2026-09-29"
  },
+ "0xd298e58a12e43ab40d957d993c26461a13e5a048": {
+  "primera_vez": "2026-10-26"
+ },
  "0xd2a6072f2bfd13c2aa8407d91d9737843e0c4385": {
   "primera_vez": "2026-10-11"
  },
@@ -32915,6 +33278,9 @@
  },
  "0xd2e4a8b67cf5499bec8349401fa839ed65858bb1": {
   "primera_vez": "2026-09-06"
+ },
+ "0xd2ea5e994c6b3ca28cfeb0a28ea6645e6ab6b1cd": {
+  "primera_vez": "2026-10-26"
  },
  "0xd2eaa93ac0f67f2221dd545df786dc7bf96fa878": {
   "primera_vez": "2026-09-26"
@@ -33435,6 +33801,9 @@
  "0xd634c54a2429df20dc8c9e4bd6d8eedb5ae75bee": {
   "primera_vez": "2026-09-23"
  },
+ "0xd636cc07b234c7e175a576075c18fe16fb480da7": {
+  "primera_vez": "2026-10-26"
+ },
  "0xd639ed35084088b36ee151ce9a9390a3abcbeb15": {
   "primera_vez": "2026-09-07"
  },
@@ -33698,6 +34067,9 @@
  },
  "0xd81095568ffca9755f6dd7d7906f0040fe545d1e": {
   "primera_vez": "2026-09-29"
+ },
+ "0xd812d4dde6c3b9481670e56aae959023f4d29dc8": {
+  "primera_vez": "2026-10-26"
  },
  "0xd81391109e80f88ce9ebfd4f367862124b97a5e2": {
   "primera_vez": "2026-09-05"
@@ -34191,6 +34563,9 @@
  "0xdb2d36ea2e622cc9f751ba400a603409bac9e3bd": {
   "primera_vez": "2026-09-18"
  },
+ "0xdb2d48c8a74a0c5ede614710394048a0fba989b5": {
+  "primera_vez": "2026-10-26"
+ },
  "0xdb30cc15042a6a66b33ca83331a5f7fb9e76361b": {
   "primera_vez": "2026-10-07"
  },
@@ -34569,6 +34944,9 @@
  "0xdda32d278cea892aa9deaecf29fb6c518cb54a5c": {
   "primera_vez": "2026-10-12"
  },
+ "0xdda7f4805dfdf145a74cd68992d90780f73cf6c7": {
+  "primera_vez": "2026-10-26"
+ },
  "0xddadfe7591d767c8a69363ea1f9cca31cd6a8e81": {
   "primera_vez": "2026-09-20"
  },
@@ -34827,6 +35205,9 @@
  "0xdf61dee08e80bffd05b7549bce1362fb4061c3ea": {
   "primera_vez": "2026-10-24"
  },
+ "0xdf62b40cbdf8e5ba27b0bb8f9adbdaef3b85bc62": {
+  "primera_vez": "2026-10-26"
+ },
  "0xdf631777df4debcbcd647e85bdcb868b43663ba0": {
   "primera_vez": "2026-10-22"
  },
@@ -34853,6 +35234,9 @@
  },
  "0xdfa019f827384f5ebd2bec9714098ff980ff24ac": {
   "primera_vez": "2026-10-13"
+ },
+ "0xdfa0aaeb0aedc04dc4e9856e4232b58159dae900": {
+  "primera_vez": "2026-10-26"
  },
  "0xdfade966849264079accf5dd6cae0f4f62ce4955": {
   "primera_vez": "2026-09-11"
@@ -34997,6 +35381,9 @@
  },
  "0xe0602e67b98075a993e8932dc4260f2d4fd14a97": {
   "primera_vez": "2026-09-14"
+ },
+ "0xe0644a6ea23644f8898f69f889b731e74624dabc": {
+  "primera_vez": "2026-10-26"
  },
  "0xe06508f3b0c49e42533b891151a2842d30430f85": {
   "primera_vez": "2026-09-10"
@@ -35330,6 +35717,9 @@
  },
  "0xe283789677b99e6d0882fa30e2c7bd4ab3bfe958": {
   "primera_vez": "2026-09-05"
+ },
+ "0xe2874dd8e322817fe4f5abe1fe3a55f651877718": {
+  "primera_vez": "2026-10-26"
  },
  "0xe28f6eb40ada65a744307534cf651efdbd6fbe92": {
   "primera_vez": "2026-10-14"
@@ -35798,6 +36188,9 @@
  },
  "0xe5bda088d70776cb11955b7d7bd59bedd3ece6a6": {
   "primera_vez": "2026-10-06"
+ },
+ "0xe5c4fcc72c670430ba7639f9b193f1d564dd5a59": {
+  "primera_vez": "2026-10-26"
  },
  "0xe5c781ae182684db3d1e00f6f08d27083b239a21": {
   "primera_vez": "2026-09-22"
@@ -36479,6 +36872,9 @@
  },
  "0xe99ec74bac12f940fe5f27cfc20933c496607f9b": {
   "primera_vez": "2026-09-11"
+ },
+ "0xe99ed89fcc4a13a60f917352b27c1d9958284b06": {
+  "primera_vez": "2026-10-26"
  },
  "0xe9a7d2f11a5c00f9f676c187b2542a7de3f0ed8e": {
   "primera_vez": "2026-10-01"
@@ -37194,6 +37590,9 @@
  "0xee9c7b724e4227687dffe79e2d6d5241890b96ea": {
   "primera_vez": "2026-10-07"
  },
+ "0xeea048359dcc800128c5c01520e38a94b8c22e43": {
+  "primera_vez": "2026-10-26"
+ },
  "0xeeae8388eb464a8be8c6509c473ebdcfaf78cd7f": {
   "primera_vez": "2026-09-26"
  },
@@ -37464,6 +37863,9 @@
  "0xf0a405195e3cd6cc148b884b9735680c0ffe203a": {
   "primera_vez": "2026-09-27"
  },
+ "0xf0a7bfc92d0a94e4793f70278fe3a1da00de4b3a": {
+  "primera_vez": "2026-10-26"
+ },
  "0xf0a8136e63b33336744149315ad7e1e2a08e5a42": {
   "primera_vez": "2026-10-20"
  },
@@ -37622,6 +38024,9 @@
  },
  "0xf1e8cddd40c5aa8b6fa3c6a45aad5927df879d9c": {
   "primera_vez": "2026-09-10"
+ },
+ "0xf1eeb18769b6b0713c36b936f15befb991ee283b": {
+  "primera_vez": "2026-10-26"
  },
  "0xf202d9a099a8fccacd4ec50fec576412e5caedca": {
   "primera_vez": "2026-09-28"
@@ -38725,6 +39130,9 @@
  "0xf8b31e6cdc9c3c457f3857e0d71410d6142b242f": {
   "primera_vez": "2026-09-05"
  },
+ "0xf8ba62eed54a5515464e7277620cbb109a73aad8": {
+  "primera_vez": "2026-10-26"
+ },
  "0xf8c0b38ea88c2c4428e29c1c925f1d883a39cd19": {
   "primera_vez": "2026-09-14"
  },
@@ -38733,6 +39141,9 @@
  },
  "0xf8c515e3e0065a28f9f24478fcd6ec9d8dbf3955": {
   "primera_vez": "2026-10-06"
+ },
+ "0xf8c5362479968e9b9643c9f3b93fbaf3db008acd": {
+  "primera_vez": "2026-10-26"
  },
  "0xf8c7ae193b744deeacc9e3b52d5e9fc93c13392b": {
   "primera_vez": "2026-10-15"
@@ -39043,6 +39454,9 @@
  "0xfad6fa0d35a7fe6037dbe89b017ebfb037463649": {
   "primera_vez": "2026-09-22"
  },
+ "0xfad763714ec49146e0d5edb19b81599fe164e889": {
+  "primera_vez": "2026-10-26"
+ },
  "0xfad826dfe2647798b0e9b3fb08d9ecd26c62e490": {
   "primera_vez": "2026-09-05"
  },
@@ -39267,6 +39681,9 @@
  },
  "0xfc1717ed9c45af0d379505717864946d9f06998e": {
   "primera_vez": "2026-10-01"
+ },
+ "0xfc1aa0e9a72ea706e89d5d333770e8ddfda28803": {
+  "primera_vez": "2026-10-26"
  },
  "0xfc1d53835a561aa762d17bec5c78496277ad7e6e": {
   "primera_vez": "2026-09-22"
@@ -39867,6 +40284,9 @@
  },
  "0xffcb985332d4d12bb5d83f0e215ef48e69763484": {
   "primera_vez": "2026-10-13"
+ },
+ "0xffd2f3abc061ca9a0760d90ef5642ee19c727b0e": {
+  "primera_vez": "2026-10-26"
  },
  "0xffd5c95a33fdab508b8cdf8592b166b52f4ccf02": {
   "primera_vez": "2026-10-20"
